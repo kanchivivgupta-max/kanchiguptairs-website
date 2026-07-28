@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mastering Stateful Multi-Agent Orchestration: Technical Notes</title>
+    <style>
+    @page {
+        size: A4;
+        margin: 2cm;
+        @bottom-right {
+            content: "Page " counter(page) " of " counter(pages);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9pt;
+            color: #666;
+        }
+    }
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #24292e;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background-color: #ffffff;
+    }
+    h1, h2, h3, h4 {
+        color: #111;
+        font-weight: 600;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        border-bottom: 1px solid #eaecef;
+        padding-bottom: 0.3em;
+    }
+    h1 { font-size: 26pt; color: #7C5CFF; border-bottom: 2px solid #7C5CFF; }
+    h2 { font-size: 20pt; color: #333; }
+    h3 { font-size: 15pt; border-bottom: none; color: #555; }
+    a { color: #7C5CFF; text-decoration: none; }
+    pre {
+        background-color: #f6f8fa;
+        border-radius: 6px;
+        padding: 16px;
+        overflow: auto;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 9.5pt;
+        border: 1px solid #e1e4e8;
+    }
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #f6f8fa;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 90%;
+    }
+    pre code {
+        background-color: transparent;
+        padding: 0;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #dfe2e5;
+        padding: 10px 14px;
+        text-align: left;
+    }
+    th {
+        background-color: #f6f8fa;
+        font-weight: 600;
+    }
+    tr:nth-child(2n) {
+        background-color: #f8f9fa;
+    }
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid #dfe2e5;
+    }
+    .callout {
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 6px;
+        border-left: 5px solid #ccc;
+    }
+    .callout-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-size: 11pt;
+    }
+    .callout-important { background-color: #f4f0ff; border-left-color: #7C5CFF; color: #7C5CFF; }
+    .callout-important .callout-body { color: #24292e; }
+    .callout-warning { background-color: #fffbdd; border-left-color: #d73a49; color: #d73a49; }
+    .callout-warning .callout-body { color: #24292e; }
+    .callout-tip { background-color: #e6ffed; border-left-color: #28a745; color: #28a745; }
+    .callout-tip .callout-body { color: #24292e; }
+    .callout-note { background-color: #f6f8fa; border-left-color: #6a737d; color: #6a737d; }
+    .meta-info {
+        font-size: 10pt;
+        color: #6a737d;
+        margin-top: -10px;
+        margin-bottom: 30px;
+    }
+    </style>
+</head>
+<body>
+
+    <h1>Mastering Stateful Multi-Agent Orchestration</h1>
+    <div class="meta-info">Compiled by Kanchi Gupta · July 2026 · Technical Study Series</div>
+
+    <div class="callout callout-important">
+        <div class="callout-title">Core Theme</div>
+        <div class="callout-body">
+            This study explores the transition of LLM orchestrations from simple linear chains (DAGs) to stateful, cyclic, and event-driven multi-agent graphs using LangGraph, local inference engines (Ollama, DeepSeek-R1, Qwen), and the Model Context Protocol (MCP).
+        </div>
+    </div>
+
+    <h2>1. The Evolution of Agentic Architectures</h2>
+    <p>
+        Early LLM pipelines relied heavily on <strong>Directed Acyclic Graphs (DAGs)</strong>—linear sequence models where step A feeds step B, which feeds step C. While suitable for simple task automation, DAGs fail to handle real-world software engineering or legal reasoning workflows that require:
+    </p>
+    <ul>
+        <li><strong>Verification Loops:</strong> Running tests, checking outputs, and looping back to a previous node on failure.</li>
+        <li><strong>Human-in-the-Loop (HITL) Interruption:</strong> Pausing state graph execution to gather user feedback or authorization before moving forward.</li>
+        <li><strong>Parallel Consensus:</strong> Spawning multiple subagents, running tasks concurrently, and merging state updates via a custom reducer.</li>
+    </ul>
+
+    <h2>2. Key Graph Components in LangGraph</h2>
+    <p>
+        Unlike naive chaining systems, stateful orchestration represents agents as a single unified state machine:
+    </p>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Technical Role</th>
+            <th>Practical Application</th>
+        </tr>
+        <tr>
+            <td><strong>State</strong></td>
+            <td>The shared, append-only memory structure of the entire graph. Often typed as a TypedDict with annotated operator reducers.</td>
+            <td>Maintains conversation history, test execution results, and active documents across multiple tool calls.</td>
+        </tr>
+        <tr>
+            <td><strong>Nodes</strong></td>
+            <td>Execution units (usually Python functions) that receive the current state, perform a computation or tool call, and return an updated state slice.</td>
+            <td>A "Coder" node writes code; a "Tester" node runs tests; an "Auditor" node reviews the code.</td>
+        </tr>
+        <tr>
+            <td><strong>Conditional Edges</strong></td>
+            <td>Control-flow routers that evaluate state properties to dynamically determine which node to invoke next.</td>
+            <td>If <code>has_errors == True</code>, route back to "Coder"; else route to "Deployer".</td>
+        </tr>
+    </table>
+
+    <h2>3. Running Local Models: Ollama with DeepSeek-R1 and Qwen</h2>
+    <p>
+        For enterprise environments, keeping data local is a necessity due to privacy, compliance, and custom token constraints. We run:
+    </p>
+    <ul>
+        <li><strong>DeepSeek-R1:</strong> Excellent for logic-heavy, multi-turn reasoning steps (planning, code audit, legal verification) where its chain-of-thought (CoT) token outputs solve complex constraints.</li>
+        <li><strong>Qwen-2.5-Coder:</strong> A highly optimized, fast local coding model capable of precise tool call structure generation and high-speed iterative writing.</li>
+    </ul>
+    <pre><code># Standard Ollama local client integration snippet
+from langchain_community.chat_models import ChatOllama
+
+# Setup Qwen for fast, precise structural JSON output (Tool Calling)
+coder_llm = ChatOllama(model="qwen2.5-coder:7b", format="json", temperature=0.0)
+
+# Setup DeepSeek-R1 for complex planning nodes
+planner_llm = ChatOllama(model="deepseek-r1:14b", temperature=0.6)</code></pre>
+
+    <h2>4. Extending Capabilities with Model Context Protocol (MCP)</h2>
+    <p>
+        The <strong>Model Context Protocol (MCP)</strong>, pioneered by Anthropic, establishes an open, standard protocol for connecting local and remote data sources, environments, and specialized tools to LLMs.
+    </p>
+    <div class="callout callout-tip">
+        <div class="callout-title">Architecture Detail</div>
+        <div class="callout-body">
+            By running local MCP servers (e.g., SQLite databases, local filesystem watchers, terminal execution tools), our LangGraph nodes do not need custom API clients for every new integration. They simply dial the MCP gateway, discover the tool schemas, and execute commands in a unified format.
+        </div>
+    </div>
+
+    <h2>5. Implementation Example: The Self-Correcting Coder</h2>
+    <p>
+        Below is a complete, minimal implementation of a stateful, self-correcting coding agent loop that writes, runs, and auto-corrects code using LangGraph.
+    </p>
+    <pre><code>import sys
+from typing import TypedDict, List, Literal
+from langgraph.graph import StateGraph, END
+
+# 1. Define the Shared State
+class AgentState(TypedDict):
+    prompt: str
+    code: str
+    error_message: str
+    attempts: int
+    max_attempts: int
+
+# 2. Define Node Behaviors
+def code_generator_node(state: AgentState) -> dict:
+    prompt = state["prompt"]
+    feedback = state.get("error_message", "")
+    attempts = state.get("attempts", 0) + 1
+    
+    # Construct prompt with self-correction context if errors exist
+    system_prompt = "Write clean Python code to solve the prompt."
+    if feedback:
+        system_prompt += f"\nPrevious attempt failed with error: {feedback}. Correct the bugs."
+        
+    # [Local LLM Call would execute here]
+    mock_code = "def add(a, b): return a + b" if attempts > 1 else "def add(a, b): return a - b"
+    return {"code": mock_code, "attempts": attempts}
+
+def test_runner_node(state: AgentState) -> dict:
+    code = state["code"]
+    error = ""
+    try:
+        # Run custom unit test in sandboxed execution environment
+        exec_scope = {}
+        exec(code, exec_scope)
+        assert exec_scope["add"](2, 3) == 5, "add(2,3) must equal 5"
+    except Exception as e:
+        error = str(e)
+    return {"error_message": error}
+
+# 3. Define Conditional Routing
+def route_after_testing(state: AgentState) -> Literal["coder", "done"]:
+    if not state["error_message"]:
+        return "done"
+    if state["attempts"] >= state["max_attempts"]:
+        return "done"
+    return "coder"
+
+# 4. Compile the Graph
+workflow = StateGraph(AgentState)
+
+# Add Nodes
+workflow.add_node("coder", code_generator_node)
+workflow.add_node("tester", test_runner_node)
+
+# Set Entry and Edges
+workflow.set_entry_point("coder")
+workflow.add_edge("coder", "tester")
+
+# Set Conditional Path
+workflow.add_conditional_edges(
+    "tester",
+    route_after_testing,
+    {
+        "coder": "coder",
+        "done": END
+    }
+)
+
+app = workflow.compile()
+
+# 5. Run the Stateful Agent
+initial_state = {"prompt": "Write a function add(a,b) that adds two numbers.", "max_attempts": 3, "attempts": 0}
+result = app.invoke(initial_state)
+
+print(f"Final Code: {result['code']}")
+print(f"Total Attempts: {result['attempts']}")
+print(f"Status: {'Success' if not result['error_message'] else 'Failed'}")
+</code></pre>
+
+    <h2>6. Conclusion and Next Steps</h2>
+    <p>
+        Stateful agentic graphs remove the unpredictability of one-shot LLM inferences. By creating resilient, closed-loop execution patterns, we turn fragile prompts into durable, industrial-grade software engineering engines. 
+    </p>
+
+    <div style="margin-top: 50px; border-top: 1px solid #eaecef; padding-top: 20px; text-align: center;">
+        <a href="../index.html">← Back to Homepage</a>
+    </div>
+
+</body>
+</html>
