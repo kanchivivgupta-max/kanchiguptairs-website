@@ -1,0 +1,458 @@
+/* ============================================
+   Kanchi Gupta Personal Brand Design Variables
+   ============================================ */
+:root {
+  /* Default: Dark Theme */
+  --bg: #0F0F0F;
+  --text: #EDEDED;
+  --muted: #8E8E93;
+  --accent: #7C5CFF;
+  --accent-rgb: 124, 92, 255;
+  --card-bg: #1A1A1A;
+  --card-border: #2D2D2D;
+  --hero-gradient: linear-gradient(135deg, #7C5CFF 0%, #B09EFF 100%);
+  --button-hover: #6941F2;
+  --input-bg: #1A1A1A;
+}
+
+/* Light Theme overrides */
+html.light {
+  --bg: #F9F9FB;
+  --text: #1C1C1E;
+  --muted: #6E6E73;
+  --accent: #7C5CFF;
+  --accent-rgb: 124, 92, 255;
+  --card-bg: #FFFFFF;
+  --card-border: #E5E5EA;
+  --hero-gradient: linear-gradient(135deg, #7C5CFF 0%, #5C3CFF 100%);
+  --button-hover: #5C3CFF;
+  --input-bg: #F2F2F7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ---------- Navigation bar ---------- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  position: sticky;
+  top: 0;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+  z-index: 100;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+html.light .nav {
+  background: rgba(249, 249, 251, 0.85);
+}
+
+.nav-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  background: var(--hero-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+#theme-toggle {
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#theme-toggle:hover {
+  background: var(--card-bg);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 8rem 2rem 6rem;
+}
+
+.hero-greeting {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 8vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  background: var(--hero-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline {
+  color: var(--muted);
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  font-weight: 450;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s, opacity 0.2s, background-color 0.2s;
+  cursor: pointer;
+}
+
+.button.primary {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.button.primary:hover {
+  background: var(--button-hover);
+}
+
+.button.secondary {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--text);
+}
+
+.button.secondary:hover {
+  background: var(--card-bg);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Content sections ---------- */
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+h2 {
+  font-size: 2.2rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- About Section ---------- */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.about-content p {
+  line-height: 1.7;
+}
+
+/* ---------- Active Projects Grid ---------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.project-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* ---------- Resources Hub Section ---------- */
+.resource-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--muted);
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 550;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--accent);
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.resource-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease-out;
+}
+
+.resource-card.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  display: none;
+}
+
+.resource-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.resource-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.resource-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.resource-format {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.resource-link {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.resource-link:hover {
+  opacity: 0.8;
+}
+
+/* ---------- Contact Section ---------- */
+#contact {
+  text-align: center;
+  border-bottom: none;
+}
+
+#contact p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.25rem 2.5rem;
+  border-radius: 8px;
+  transition: transform 0.2s, border-color 0.2s;
+  min-width: 240px;
+}
+
+.contact-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.contact-item span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.contact-item strong {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--muted);
+  border-top: 1px solid var(--card-border);
+  font-size: 0.9rem;
+}
+
+/* ---------- Mobile Optimization ---------- */
+@media (max-width: 600px) {
+  .nav {
+    padding: 1rem 1.5rem;
+  }
+  .nav-links {
+    gap: 1rem;
+  }
+  .hero {
+    padding: 6rem 1.5rem 4rem;
+  }
+  section {
+    padding: 4rem 1.5rem;
+  }
+  .contact-item {
+    width: 100%;
+  }
+}

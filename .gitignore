@@ -1,0 +1,5 @@
+# Ignore verification and temp files
+hermes-verify-site.py
+.DS_Store
+.tmp/
+node_modules/
