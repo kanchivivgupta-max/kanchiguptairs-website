@@ -1,32 +1,32 @@
 /* ============================================
-   Kanchi Gupta Personal Brand Design Variables
+   Kanchi Gupta Personal Brand Design Variables (Linear.app Style)
    ============================================ */
 :root {
   /* Default: Dark Theme */
-  --bg: #0F0F0F;
-  --text: #EDEDED;
-  --muted: #8E8E93;
-  --accent: #7C5CFF;
-  --accent-rgb: 124, 92, 255;
-  --card-bg: #1A1A1A;
-  --card-border: #2D2D2D;
-  --hero-gradient: linear-gradient(135deg, #7C5CFF 0%, #B09EFF 100%);
-  --button-hover: #6941F2;
-  --input-bg: #1A1A1A;
+  --bg: #08090a;
+  --text: #f7f8f8;
+  --muted: #8a8f98;
+  --accent: #7170ff;
+  --accent-rgb: 113, 112, 255;
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --hero-gradient: linear-gradient(135deg, #7170ff 0%, #b0aeff 100%);
+  --button-hover: #828fff;
+  --input-bg: rgba(255, 255, 255, 0.02);
 }
 
 /* Light Theme overrides */
 html.light {
-  --bg: #F9F9FB;
-  --text: #1C1C1E;
-  --muted: #6E6E73;
-  --accent: #7C5CFF;
-  --accent-rgb: 124, 92, 255;
-  --card-bg: #FFFFFF;
-  --card-border: #E5E5EA;
-  --hero-gradient: linear-gradient(135deg, #7C5CFF 0%, #5C3CFF 100%);
-  --button-hover: #5C3CFF;
-  --input-bg: #F2F2F7;
+  --bg: #f7f8f8;
+  --text: #08090a;
+  --muted: #62666d;
+  --accent: #5e6ad2;
+  --accent-rgb: 94, 106, 210;
+  --card-bg: rgba(0, 0, 0, 0.015);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --hero-gradient: linear-gradient(135deg, #5e6ad2 0%, #7170ff 100%);
+  --button-hover: #7170ff;
+  --input-bg: rgba(0, 0, 0, 0.02);
 }
 
 * {
@@ -40,7 +40,8 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-feature-settings: "cv01", "ss03";
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
