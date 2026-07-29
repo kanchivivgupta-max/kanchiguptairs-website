@@ -45,6 +45,53 @@ body {
   color: var(--text);
   line-height: 1.6;
   transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- 3D Canvas Background & Ambient Glow Orbs ---------- */
+#nodes-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+.ambient-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(100px);
+  z-index: -2;
+  pointer-events: none;
+  animation: floatOrb 25s infinite alternate ease-in-out;
+}
+
+html.light .ambient-glow {
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.04) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.glow-1 {
+  top: -10%;
+  left: -200px;
+}
+
+.glow-2 {
+  bottom: 10%;
+  right: -200px;
+  animation-duration: 35s;
+  animation-delay: -5s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(80px, 50px) scale(1.15); }
 }
 
 /* ---------- Navigation bar ---------- */
@@ -55,16 +102,17 @@ body {
   padding: 1.25rem 2rem;
   position: sticky;
   top: 0;
-  background: rgba(15, 15, 15, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--card-border);
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 100;
   transition: background 0.3s, border-color 0.3s;
 }
 
 html.light .nav {
-  background: rgba(249, 249, 251, 0.85);
+  background: rgba(249, 249, 251, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .nav-name {
@@ -315,13 +363,22 @@ h2 {
 }
 
 .resource-card {
-  background: var(--card-bg);
+  background: rgba(26, 26, 26, 0.45);
   border: 1px solid var(--card-border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  transition: all 0.25s ease-out;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.4s, background 0.3s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.resource-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(var(--accent-rgb), 0.5);
+  box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.12);
+  background: rgba(26, 26, 26, 0.65);
 }
 
 .resource-card.hidden {
