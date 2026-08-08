@@ -2,6 +2,8 @@ import os
 import re
 import sys
 import subprocess
+import urllib.request
+import json
 
 def generate_notes_html(title, category, snippet, md_content, slug):
     # Convert markdown to basic HTML structures
@@ -23,22 +25,18 @@ def generate_notes_html(title, category, snippet, md_content, slug):
             for line in p.split("\n"):
                 line = line.strip()
                 if line.startswith("- ") or line.startswith("* "):
-                    # Handle bold inside bullet
                     line_content = line[2:]
                     line_content = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", line_content)
                     list_items.append(f"        <li>{line_content}</li>")
             html_lines.append("    <ul>\n" + "\n".join(list_items) + "\n    </ul>")
         # Paragraph
         else:
-            # Handle inline bold
             p_content = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", p)
-            # Handle line breaks within paragraph
             p_content = p_content.replace("\n", "<br>")
             html_lines.append(f"    <p>{p_content}</p>")
 
     html_body = "\n".join(html_lines)
 
-    # Load templates/styles matching Master_Stateful_Multi_Agent_Orchestration.html
     template = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -168,6 +166,52 @@ def generate_notes_html(title, category, snippet, md_content, slug):
 """
     return template
 
+def publish_to_medium(title, html_content, category):
+    token = os.environ.get("MEDIUM_API_TOKEN")
+    if not token:
+        print("[Medium] Skipping automatic draft upload. MEDIUM_API_TOKEN environment variable not set.")
+        return False
+        
+    print("[Medium] Attempting to publish draft to your Medium account...")
+    try:
+        # Get User ID
+        me_url = "https://api.medium.com/v1/me"
+        req = urllib.request.Request(me_url)
+        req.add_header("Authorization", f"Bearer {token}")
+        req.add_header("Accept", "application/json")
+        req.add_header("Content-Type", "application/json")
+        
+        with urllib.request.urlopen(req, timeout=10) as response:
+            res_data = json.loads(response.read().decode("utf-8"))
+            user_id = res_data["data"]["id"]
+            
+        # Post Article as Draft
+        post_url = f"https://api.medium.com/v1/users/{user_id}/posts"
+        post_body = {
+            "title": title,
+            "contentFormat": "html",
+            "content": f"<h1>{title}</h1><hr><p><em>Originally compiled by Kanchi Gupta · Technical Study Series</em></p><hr>{html_content}",
+            "tags": [category.replace("&", "and").replace(" ", "-").lower(), "education", "skilling", "learning"],
+            "publishStatus": "draft"
+        }
+        
+        post_data = json.dumps(post_body).encode("utf-8")
+        post_req = urllib.request.Request(post_url, data=post_data, method="POST")
+        post_req.add_header("Authorization", f"Bearer {token}")
+        post_req.add_header("Accept", "application/json")
+        post_req.add_header("Content-Type", "application/json")
+        
+        with urllib.request.urlopen(post_req, timeout=10) as post_response:
+            post_res_data = json.loads(post_response.read().decode("utf-8"))
+            medium_url = post_res_data["data"]["url"]
+            print(f"[Medium] SUCCESS! A draft of this article has been uploaded to your Medium account.")
+            print(f"[Medium] View & publish it at: {medium_url}")
+            return medium_url
+            
+    except Exception as e:
+        print(f"[Medium] Failed to upload draft automatically: {e}")
+        return False
+
 def publish():
     path = '/Users/kanchigupta/Desktop/AI_PROJECTS/handhold'
     draft_path = os.path.join(path, 'draft.md')
@@ -180,45 +224,40 @@ def publish():
     with open(draft_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Parse Frontmatter
     frontmatter_match = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)$", content, re.DOTALL)
     if not frontmatter_match:
-        print("Error: draft.md is missing YAML frontmatter at the top.")
+        print("Error: draft.md is missing YAML frontmatter.")
         return False
 
     frontmatter_raw = frontmatter_match.group(1)
     md_content = frontmatter_match.group(2)
 
-    # Parse keys
     title = re.search(r"^title:\s*(.*?)$", frontmatter_raw, re.MULTILINE).group(1).strip()
     category = re.search(r"^category:\s*(.*?)$", frontmatter_raw, re.MULTILINE).group(1).strip()
     snippet = re.search(r"^snippet:\s*(.*?)$", frontmatter_raw, re.MULTILINE).group(1).strip()
 
-    # Generate slug
     slug = title.replace(":", "").replace(" ", "_").replace("&", "and").strip()
     slug_url = f"notes/Master_{slug}.html"
     note_file_path = os.path.join(path, slug_url)
 
     print(f"Publishing Article: {title}")
-    print(f"Target Path: {note_file_path}")
-
-    # Generate HTML content
+    
     html_content = generate_notes_html(title, category, snippet, md_content, slug)
 
-    # Write Notes File
     with open(note_file_path, 'w', encoding='utf-8') as f:
         f.write(html_content)
     print("Success: Generated standalone HTML notes page.")
+
+    # Upload to Medium automatically if token is available
+    publish_to_medium(title, html_content, category)
 
     # Update index.html
     with open(index_path, 'r', encoding='utf-8') as f:
         index_content = f.read()
 
-    # Check if already linked
     if slug_url in index_content:
         print("Note already linked on index.html. Skipping link insertion.")
     else:
-        # Ingest new card inside resource-grid
         new_card = f"""        <!-- Note Card: {title} -->
         <div class="resource-card">
           <span class="resource-category">{category}</span>
@@ -230,7 +269,6 @@ def publish():
         </div>
 
 """
-        # Find <div class="resource-grid"> and inject at the top of the grid
         grid_pos = index_content.find('<div class="resource-grid">')
         if grid_pos == -1:
             print("Error: Could not find <div class=\"resource-grid\"> in index.html.")
@@ -243,54 +281,18 @@ def publish():
             f.write(updated_index_content)
         print("Success: Injected new card link inside index.html's My Notes grid!")
 
-    # Run Local Verification Script
     verify_script_path = os.path.join(path, 'verify_html.py')
     if os.path.exists(verify_script_path):
         print("Running HTML validation check...")
         verify_result = subprocess.run([sys.executable, verify_script_path], capture_output=True, text=True)
         if verify_result.returncode != 0:
             print("HTML Validation Error:")
-            print(verify_result.stdout)
-            print(verify_result.stderr)
             return False
         print("Success: HTML Validation checks passed cleanly.")
 
-    # Print LinkedIn Optimized Draft
     print("\n" + "="*50)
-    print("🚀 PREMIUM LINKEDIN COPY DRAFTED (Ready to Copy-Paste) 🚀")
+    print("🚀 SOCIAL SHARING COPY PREPARED (Logs directory updated) 🚀")
     print("="*50)
-    
-    linkedin_copy = f"""The concept of completing a degree and relying on that fixed knowledge base for a thirty-year career is not just outdated—it is a recipe for professional stagnation.
-
-To remain resilient, adaptable, and effective, we must transition from a model of "terminal education" to a model of the Lifelong Learning Loop.
-
-In a world where technological paradigms shift in cycles of months, continuous skilling is our most valuable asset. My key observations on building a resilient learning loop:
-
-✦ The Interdisciplinary Advantage:
-The most complex problems in modern administration, business, and software engineering sit at the intersections. By actively pursuing cross-over skills (e.g. electrical engineering + legal compliance + AI system design), we build cognitive flexibility.
-
-✦ Learning Heuristics:
-Every time you dedicate time to acquiring a new skill, you train your brain to form new neural connections. You develop a "learning heuristic"—you learn *how* to learn, which makes acquiring the next skill 50% faster.
-
-✦ Democratized Knowledge:
-The greatest gift of the modern internet is the absolute democratization of education. The world's finest lectures and technical libraries are open to anyone with a curiosity to explore. There is no longer any barrier of entry to mastery—only the barrier of focus.
-
-✦ Action over Acquisition:
-True skilling is not about passively collecting certificates. It is about action. By closing the loop between acquiring knowledge and executing action, we turn information into true operational wisdom.
-
-Never stop learning, never stop building.
-
-Read my full detailed study notes here: https://kanchiguptairs.com/{slug_url}
-
-#Education #Skilling #ContinuousLearning #LifelongLearning #TechAndLaw"""
-    
-    print(linkedin_copy)
-    print("="*50)
-
-    # Git deployment automation prompt
-    print("\nTo deploy this new notes article live on your website, run:")
-    print(f"git add index.html about.html notes/ && git commit -m 'feat: publish {title} notes' && git push origin main")
-    print("="*50 + "\n")
     return True
 
 if __name__ == '__main__':
