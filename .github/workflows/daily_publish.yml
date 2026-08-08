@@ -1,0 +1,33 @@
+name: Daily Content Factory Publisher
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # Runs daily at 4:00 AM UTC (9:30 AM IST)
+  workflow_dispatch:      # Allows manual trigger of the workflow from GitHub UI!
+
+permissions:
+  contents: write
+
+jobs:
+  publish_daily:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Execute Cloud Content Factory
+        run: |
+          python3 cloud_publish.py
+
+      - name: Commit and Push Changes Live
+        run: |
+          git config --global user.name "kanchi gupta"
+          git config --global user.email "kanchivivgupta@gmail.com"
+          git add index.html about.html notes/ published_log.txt logs/
+          # Only commit if changes are present to prevent workflow failure on empty commits
+          git diff-index --quiet HEAD || (git commit -m "chore(cloud): autonomously publish daily scheduled notes" && git push)
