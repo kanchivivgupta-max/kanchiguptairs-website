@@ -2,8 +2,6 @@ import os
 import re
 import sys
 import subprocess
-import urllib.request
-import json
 
 def generate_notes_html(title, category, snippet, md_content, slug):
     # Convert markdown to basic HTML structures
@@ -166,50 +164,24 @@ def generate_notes_html(title, category, snippet, md_content, slug):
 """
     return template
 
-def publish_to_medium(title, html_content, category):
-    token = os.environ.get("MEDIUM_API_TOKEN")
-    if not token:
-        print("[Medium] Skipping automatic draft upload. MEDIUM_API_TOKEN environment variable not set.")
-        return False
-        
-    print("[Medium] Attempting to publish draft to your Medium account...")
+def copy_to_macos_clipboard(text):
     try:
-        # Get User ID
-        me_url = "https://api.medium.com/v1/me"
-        req = urllib.request.Request(me_url)
-        req.add_header("Authorization", f"Bearer {token}")
-        req.add_header("Accept", "application/json")
-        req.add_header("Content-Type", "application/json")
-        
-        with urllib.request.urlopen(req, timeout=10) as response:
-            res_data = json.loads(response.read().decode("utf-8"))
-            user_id = res_data["data"]["id"]
-            
-        # Post Article as Draft
-        post_url = f"https://api.medium.com/v1/users/{user_id}/posts"
-        post_body = {
-            "title": title,
-            "contentFormat": "html",
-            "content": f"<h1>{title}</h1><hr><p><em>Originally compiled by Kanchi Gupta · Technical Study Series</em></p><hr>{html_content}",
-            "tags": [category.replace("&", "and").replace(" ", "-").lower(), "education", "skilling", "learning"],
-            "publishStatus": "draft"
-        }
-        
-        post_data = json.dumps(post_body).encode("utf-8")
-        post_req = urllib.request.Request(post_url, data=post_data, method="POST")
-        post_req.add_header("Authorization", f"Bearer {token}")
-        post_req.add_header("Accept", "application/json")
-        post_req.add_header("Content-Type", "application/json")
-        
-        with urllib.request.urlopen(post_req, timeout=10) as post_response:
-            post_res_data = json.loads(post_response.read().decode("utf-8"))
-            medium_url = post_res_data["data"]["url"]
-            print(f"[Medium] SUCCESS! A draft of this article has been uploaded to your Medium account.")
-            print(f"[Medium] View & publish it at: {medium_url}")
-            return medium_url
-            
+        # Use pbcopy on macOS to inject text directly to system clipboard
+        process = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
+        process.communicate(text.encode('utf-8'))
+        return True
     except Exception as e:
-        print(f"[Medium] Failed to upload draft automatically: {e}")
+        print(f"Error copying to clipboard: {e}")
+        return False
+
+def open_medium_draft_page():
+    try:
+        # Open Google Chrome directly to Medium draft page
+        subprocess.run(['open', '-a', 'Google Chrome', 'https://medium.com/new-story'])
+        print("[Medium] SUCCESS! Google Chrome has opened your Medium Story Draft Creator.")
+        return True
+    except Exception as e:
+        print(f"Error opening Chrome: {e}")
         return False
 
 def publish():
@@ -248,8 +220,12 @@ def publish():
         f.write(html_content)
     print("Success: Generated standalone HTML notes page.")
 
-    # Upload to Medium automatically if token is available
-    publish_to_medium(title, html_content, category)
+    # macOS Clipboard & Chrome Auto-Opening Pipeline (No Token Required!)
+    clipboard_text = f"{title}\n\nOriginally compiled by Kanchi Gupta · Technical Study Series\n\n{md_content}"
+    if copy_to_macos_clipboard(clipboard_text):
+        print("Success: Copied entire article content and title to your macOS Clipboard.")
+        open_medium_draft_page()
+        print("[Medium] Your article is on your clipboard. Simply press Cmd+V (Paste) in your newly opened Medium editor!")
 
     # Update index.html
     with open(index_path, 'r', encoding='utf-8') as f:
@@ -291,7 +267,7 @@ def publish():
         print("Success: HTML Validation checks passed cleanly.")
 
     print("\n" + "="*50)
-    print("🚀 SOCIAL SHARING COPY PREPARED (Logs directory updated) 🚀")
+    print("🚀 CONTENT GENERATED & COPIED TO CLIPBOARD 🚀")
     print("="*50)
     return True
 
