@@ -184,6 +184,30 @@ def open_medium_draft_page():
         print(f"Error opening Chrome: {e}")
         return False
 
+def update_sitemap(slug_url):
+    sitemap_path = "/Users/kanchigupta/Desktop/AI_PROJECTS/handhold/sitemap.xml"
+    if not os.path.exists(sitemap_path):
+        return False
+    with open(sitemap_path, "r", encoding="utf-8") as f:
+        data = f.read()
+    
+    full_url = f"https://kanchiguptairs.com/{slug_url}"
+    if full_url in data:
+        return True
+        
+    new_url_entry = f"""  <url>
+    <loc>{full_url}</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>"""
+    data = data.replace("</urlset>", new_url_entry)
+    with open(sitemap_path, "w", encoding="utf-8") as f:
+        f.write(data)
+    print("Success: Updated sitemap.xml with the new URL!")
+    return True
+
 def publish():
     path = '/Users/kanchigupta/Desktop/AI_PROJECTS/handhold'
     draft_path = os.path.join(path, 'draft.md')
@@ -226,6 +250,9 @@ def publish():
         print("Success: Copied entire article content and title to your macOS Clipboard.")
         open_medium_draft_page()
         print("[Medium] Your article is on your clipboard. Simply press Cmd+V (Paste) in your newly opened Medium editor!")
+
+    # Update sitemap.xml automatically!
+    update_sitemap(slug_url)
 
     # Update index.html
     with open(index_path, 'r', encoding='utf-8') as f:

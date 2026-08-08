@@ -174,31 +174,27 @@ def generate_presentation_pptx(title, category, snippet, md_content, output_path
     print(f"[PPTX] Generating automated PowerPoint slide deck...")
     try:
         prs = Presentation()
-        # Set to 16:9 landscape aspect ratio
         prs.slide_width = Inches(13.333)
         prs.slide_height = Inches(7.5)
         
-        # Color palette variables (Linear.app Style)
-        color_bg = RGBColor(8, 9, 10)         # Marketing Black #08090a
-        color_card = RGBColor(20, 21, 24)      # Surface Dark
-        color_text_white = RGBColor(247, 248, 248) # Near white
-        color_text_gray = RGBColor(138, 143, 152)  # Muted silver gray
-        color_accent = RGBColor(113, 112, 255)     # Brand Violet #7170ff
+        color_bg = RGBColor(8, 9, 10)         
+        color_card = RGBColor(20, 21, 24)      
+        color_text_white = RGBColor(247, 248, 248) 
+        color_text_gray = RGBColor(138, 143, 152)  
+        color_accent = RGBColor(113, 112, 255)     
         
         blank_slide_layout = prs.slide_layouts[6]
         
-        # -------------------- SLIDE 1: COVER --------------------
+        # Slide 1: Cover
         slide1 = prs.slides.add_slide(blank_slide_layout)
         background1 = slide1.background
         background1.fill.solid()
         background1.fill.fore_color.rgb = color_bg
         
-        # Cover Text Box
         tx_box = slide1.shapes.add_textbox(Inches(1), Inches(2), Inches(11.333), Inches(4))
         tf = tx_box.text_frame
         tf.word_wrap = True
         
-        # Main Title
         p_title = tf.paragraphs[0]
         p_title.text = title
         p_title.font.name = "Arial"
@@ -208,7 +204,6 @@ def generate_presentation_pptx(title, category, snippet, md_content, output_path
         p_title.alignment = PP_ALIGN.CENTER
         p_title.space_after = Pt(20)
         
-        # Subtitle
         p_sub = tf.add_paragraph()
         p_sub.text = "Professional Skilling & Adaptation in Public Service"
         p_sub.font.name = "Arial"
@@ -217,7 +212,6 @@ def generate_presentation_pptx(title, category, snippet, md_content, output_path
         p_sub.alignment = PP_ALIGN.CENTER
         p_sub.space_after = Pt(40)
         
-        # Author details
         p_auth = tf.add_paragraph()
         p_auth.text = "Kanchi Gupta, Joint Commissioner (IRS)"
         p_auth.font.name = "Arial"
@@ -233,19 +227,17 @@ def generate_presentation_pptx(title, category, snippet, md_content, output_path
         p_meta.font.color.rgb = color_text_gray
         p_meta.alignment = PP_ALIGN.CENTER
 
-        # -------------------- SLIDES 2-4: CONTENT --------------------
-        # Extract headers and content from Markdown
+        # Slides 2-4: Content
         headers = re.findall(r"^##\s*(.*?)$", md_content, re.MULTILINE)
         paragraphs = md_content.strip().split("\n\n")
         
         slide_count = 2
-        for h in headers[:3]: # Limit to next 3 sections for 4-slide deck
+        for h in headers[:3]: 
             slide = prs.slides.add_slide(blank_slide_layout)
             background = slide.background
             background.fill.solid()
             background.fill.fore_color.rgb = color_bg
             
-            # Slide Header
             header_box = slide.shapes.add_textbox(Inches(0.75), Inches(0.5), Inches(11.833), Inches(0.75))
             htf = header_box.text_frame
             hp = htf.paragraphs[0]
@@ -254,12 +246,10 @@ def generate_presentation_pptx(title, category, snippet, md_content, output_path
             hp.font.size = Pt(9)
             hp.font.color.rgb = color_text_gray
             
-            # Content Box
             content_box = slide.shapes.add_textbox(Inches(0.75), Inches(1.5), Inches(11.833), Inches(5))
             ctf = content_box.text_frame
             ctf.word_wrap = True
             
-            # Title of Slide
             cp_title = ctf.paragraphs[0]
             cp_title.text = h
             cp_title.font.name = "Arial"
@@ -268,20 +258,15 @@ def generate_presentation_pptx(title, category, snippet, md_content, output_path
             cp_title.font.color.rgb = color_text_white
             cp_title.space_after = Pt(20)
             
-            # Find paragraphs that are under this specific header
-            # For simplicity, we grab the text that contains bullet points
             bullets_found = []
             for p in paragraphs:
                 if p.strip().startswith("- ") or p.strip().startswith("* "):
-                    # Extract bullet items
                     for line in p.split("\n"):
                         line = line.strip()
                         if line.startswith("- ") or line.startswith("* "):
-                            # Remove bold markdown tags
                             clean_line = line[2:].replace("**", "")
                             bullets_found.append(clean_line)
                             
-            # Add up to 3 bullets to Slide
             for bullet in bullets_found[:3]:
                 bp = ctf.add_paragraph()
                 bp.text = f"✦   {bullet}"
@@ -298,6 +283,30 @@ def generate_presentation_pptx(title, category, snippet, md_content, output_path
     except Exception as e:
         print(f"[PPTX] Error compiling presentation slide deck: {e}")
         return False
+
+def update_sitemap(slug_url):
+    sitemap_path = os.path.join(os.getcwd(), 'sitemap.xml')
+    if not os.path.exists(sitemap_path):
+        return False
+    with open(sitemap_path, "r", encoding="utf-8") as f:
+        data = f.read()
+    
+    full_url = f"https://kanchiguptairs.com/{slug_url}"
+    if full_url in data:
+        return True
+        
+    new_url_entry = f"""  <url>
+    <loc>{full_url}</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>"""
+    data = data.replace("</urlset>", new_url_entry)
+    with open(sitemap_path, "w", encoding="utf-8") as f:
+        f.write(data)
+    print("Success: Updated sitemap.xml with the new URL!")
+    return True
 
 def cloud_publish():
     path = os.getcwd()
@@ -360,6 +369,9 @@ def cloud_publish():
     pptx_path = os.path.join(path, f"notes/slides/{slug}_Presentation.pptx")
     os.makedirs(os.path.dirname(pptx_path), exist_ok=True)
     generate_presentation_pptx(title, category, snippet, md_content, pptx_path)
+
+    # Update sitemap.xml automatically!
+    update_sitemap(slug_url)
 
     # Update index.html
     with open(index_path, 'r', encoding='utf-8') as f:
