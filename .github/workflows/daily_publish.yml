@@ -20,6 +20,10 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install python-pptx dependency
+        run: |
+          pip install python-pptx
+
       - name: Execute Cloud Content Factory
         run: |
           python3 cloud_publish.py
