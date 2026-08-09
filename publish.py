@@ -2,9 +2,9 @@ import os
 import re
 import sys
 import subprocess
+import urllib.parse
 
 def generate_notes_html(title, category, snippet, md_content, slug):
-    # Convert markdown to basic HTML structures
     html_lines = []
     paragraphs = md_content.strip().split("\n\n")
     
@@ -12,12 +12,10 @@ def generate_notes_html(title, category, snippet, md_content, slug):
         p = p.strip()
         if not p:
             continue
-        # Headers
         if p.startswith("## "):
             html_lines.append(f"    <h2>{p[3:]}</h2>")
         elif p.startswith("### "):
             html_lines.append(f"    <h3>{p[4:]}</h3>")
-        # Bullet list
         elif p.startswith("- ") or p.startswith("* "):
             list_items = []
             for line in p.split("\n"):
@@ -27,7 +25,6 @@ def generate_notes_html(title, category, snippet, md_content, slug):
                     line_content = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", line_content)
                     list_items.append(f"        <li>{line_content}</li>")
             html_lines.append("    <ul>\n" + "\n".join(list_items) + "\n    </ul>")
-        # Paragraph
         else:
             p_content = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", p)
             p_content = p_content.replace("\n", "<br>")
@@ -184,6 +181,17 @@ def open_medium_draft_page():
         print(f"Error opening Chrome: {e}")
         return False
 
+def open_twitter_intent_page(tweet_text):
+    try:
+        encoded_tweet = urllib.parse.quote(tweet_text)
+        intent_url = f"https://twitter.com/intent/tweet?text={encoded_tweet}"
+        subprocess.run(['open', '-a', 'Google Chrome', intent_url])
+        print("[X/Twitter] SUCCESS! Google Chrome has opened your X Compose box, pre-populated with your tweet!")
+        return True
+    except Exception as e:
+        print(f"Error opening Twitter intent in Chrome: {e}")
+        return False
+
 def update_sitemap(slug_url):
     sitemap_path = "/Users/kanchigupta/Desktop/AI_PROJECTS/handhold/sitemap.xml"
     if not os.path.exists(sitemap_path):
@@ -251,6 +259,10 @@ def publish():
         open_medium_draft_page()
         print("[Medium] Your article is on your clipboard. Simply press Cmd+V (Paste) in your newly opened Medium editor!")
 
+    # Generate perfectly tailored, pre-populated Tweet!
+    tweet_text = f"The divide between natural law and deterministic binary logic is collapsing. Stateful multi-agent systems and LLMs enable real-time, executable compliance. \n\nRead my full architectural notes here:\nhttps://kanchiguptairs.com/{slug_url}\n\n#LegalTech #AICompliance #SystemDesign"
+    open_twitter_intent_page(tweet_text)
+
     # Update sitemap.xml automatically!
     update_sitemap(slug_url)
 
@@ -294,7 +306,7 @@ def publish():
         print("Success: HTML Validation checks passed cleanly.")
 
     print("\n" + "="*50)
-    print("🚀 CONTENT GENERATED & COPIED TO CLIPBOARD 🚀")
+    print("🚀 CONTENT GENERATED, COPIED TO CLIPBOARD & PRE-POPULATED IN CHROME 🚀")
     print("="*50)
     return True
 
