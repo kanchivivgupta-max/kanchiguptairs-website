@@ -429,34 +429,6 @@
     </div>
   </main>
 
-  <!-- IMMERSIVE BOOK VIEWER OVERLAY -->
-  <div class="viewer-overlay" id="viewer-overlay">
-    <div class="viewer-card">
-      <button class="viewer-close" onclick="closeBook()">✕</button>
-      
-      <div class="slide-page-indicator" id="viewer-page">Page 1</div>
-      
-      <div class="slide-quote" id="viewer-quote">"Loading sweet story..."</div>
-      
-      <div class="interactive-grid">
-        <div class="interactive-card action-card">
-          <div class="card-label">🫵 ACTION</div>
-          <div class="card-body" id="viewer-action">Loading activity...</div>
-        </div>
-        <div class="interactive-card sound-card" onclick="playSoundPrompt()">
-          <div class="card-label">🔊 SOUND</div>
-          <div class="card-body" id="viewer-sound">Loading sound...</div>
-        </div>
-      </div>
-      
-      <div class="viewer-controls">
-        <button class="control-btn" id="prev-btn" onclick="prevPage()">← Back</button>
-        <span id="page-dot-indicator" style="font-size: 1.5rem; letter-spacing: 0.25em;"></span>
-        <button class="control-btn" id="next-btn" onclick="nextPage()">Next →</button>
-      </div>
-    </div>
-  </div>
-
   <footer class="footer">
     <p>© <span id="year">2026</span> Kanchi Gupta · All Rights Reserved. Made with love for little seekers.</p>
   </footer>
@@ -498,6 +470,7 @@
         title: "The Three Little Pigs",
         desc: "An interactive, sensory guide for parents and toddlers to count, tap, and knock together while building houses!",
         icon: "🐷",
+        pdfUrl: "notes/storybooks/Master_three-little-pigs_Storybook.pdf",
         pages: [
           {
             quote: "\"Look! Three happy little pigs! One, two, three!\"",
@@ -539,14 +512,15 @@
       storybooks.forEach((book, index) => {
         const card = document.createElement("div");
         card.className = "book-card";
-        card.onclick = () => openBook(book.id);
+        card.style.cursor = "default";
+        const pdfPath = book.pdfUrl || `notes/storybooks/Master_${book.id}_Storybook.pdf`;
         card.innerHTML = `
           <div>
             <div class="book-icon">${book.icon}</div>
             <h3 class="book-title">${book.title}</h3>
             <p class="book-desc">${book.desc}</p>
           </div>
-          <button class="book-btn">Read Story →</button>
+          <a href="${pdfPath}" download class="book-btn" style="background: var(--accent); color: white; display: block; text-decoration: none; text-align: center;">Download Printable PDF 📥</a>
         `;
         container.appendChild(card);
       });
