@@ -114,7 +114,7 @@ def generate_pdf_slides(title, description, pages, output_path):
         story.append(Paragraph(title, style_cover_title))
         story.append(Paragraph(description, style_cover_sub))
         story.append(Spacer(1, 40))
-        story.append(Paragraph("<b>Compiled by Kanchi Gupta · Mom's Corner</b>", style_cover_author))
+        story.append(Paragraph("<b>Compiled by Kanchi Gupta · Kids' Corner</b>", style_cover_author))
         story.append(Paragraph("An Interactive Learning Guide for Parents & Toddlers", ParagraphStyle('CoverSub2', parent=style_cover_sub, fontSize=11, leading=15)))
         story.append(PageBreak())
         
@@ -156,7 +156,7 @@ def generate_pdf_slides(title, description, pages, output_path):
             
             # Slide Footer
             story.append(Spacer(1, 45))
-            p_footer = Paragraph(f"<b>Kanchi Gupta · Mom's Corner</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Page {page_num}", ParagraphStyle('F', parent=style_card_body, fontSize=8, textColor=color_muted))
+            p_footer = Paragraph(f"<b>Kanchi Gupta · Kids' Corner</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Page {page_num}", ParagraphStyle('F', parent=style_card_body, fontSize=8, textColor=color_muted))
             story.append(p_footer)
             
             story.append(PageBreak())
@@ -217,7 +217,7 @@ def cloud_publish_storybook():
     path = os.getcwd()
     drafts_pool_dir = os.path.join(path, 'storybooks_pool')
     log_file_path = os.path.join(path, 'published_storybooks_log.txt')
-    mom_corner_path = os.path.join(path, 'mom-corner.html')
+    mom_corner_path = os.path.join(path, 'kids-corner.html')
 
     # Create directories if missing
     os.makedirs(drafts_pool_dir, exist_ok=True)
@@ -254,7 +254,7 @@ def cloud_publish_storybook():
 
     # Compile PDF
     if generate_pdf_slides(book_data['title'], book_data['desc'], book_data['pages'], pdf_full_path):
-        # Update mom-corner.html to add a simple download card!
+        # Update kids-corner.html to add a simple download card!
         with open(mom_corner_path, 'r', encoding='utf-8') as f:
             html_content = f.read()
 
@@ -277,7 +277,7 @@ def cloud_publish_storybook():
             # Find the grid: <div class="books-grid" id="books-container">
             grid_pos = html_content.find('<div class="books-grid" id="books-container">')
             if grid_pos == -1:
-                print("Error: Could not find books-grid in mom-corner.html")
+                print("Error: Could not find books-grid in kids-corner.html")
                 sys.exit(1)
 
             insert_pos = html_content.find('\n', grid_pos) + 1
@@ -285,7 +285,7 @@ def cloud_publish_storybook():
 
             with open(mom_corner_path, 'w', encoding='utf-8') as f:
                 f.write(updated_html)
-            print(f"Success: Registered and updated mom-corner.html sitemaps!")
+            print(f"Success: Registered and updated kids-corner.html sitemaps!")
 
         # Append to log
         with open(log_file_path, 'a', encoding='utf-8') as f:

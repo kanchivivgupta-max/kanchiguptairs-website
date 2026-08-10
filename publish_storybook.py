@@ -53,7 +53,7 @@ def parse_markdown_storybook(file_path):
 def publish_storybook():
     path = '/Users/kanchigupta/Desktop/AI_PROJECTS/handhold'
     draft_path = os.path.join(path, 'draft_storybook.md')
-    mom_corner_path = os.path.join(path, 'mom-corner.html')
+    mom_corner_path = os.path.join(path, 'kids-corner.html')
 
     if not os.path.exists(draft_path):
         print("Error: draft_storybook.md file not found in the project root.")
@@ -68,7 +68,7 @@ def publish_storybook():
 
     # Check if book already exists in file
     if f'id: "{book_data["id"]}"' in html_content or f'id: \'{book_data["id"]}\'' in html_content:
-        print(f"Book with id '{book_data['id']}' is already registered in mom-corner.html.")
+        print(f"Book with id '{book_data['id']}' is already registered in kids-corner.html.")
         return True
 
     # Construct the JSON string to inject
@@ -77,7 +77,7 @@ def publish_storybook():
     # We find the beginning of the array: const storybooks = [
     array_pos = html_content.find('const storybooks = [')
     if array_pos == -1:
-        print("Error: Could not find const storybooks array in mom-corner.html.")
+        print("Error: Could not find const storybooks array in kids-corner.html.")
         return False
 
     insert_pos = html_content.find('\n', array_pos) + 1
