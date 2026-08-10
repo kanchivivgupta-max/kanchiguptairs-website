@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mom's Corner · Interactive Toddler Storybooks</title>
+  
+  <!-- Bubbly Kids Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #FAF6F0;           /* Soft vanilla cream */
+      --text: #4A3B32;         /* Chocolate charcoal */
+      --muted: #8C786C;        /* Soft cocoa */
+      --pink: #FFD5D2;         /* Cotton candy pink */
+      --blue: #D0EBF5;         /* Soft sky-blue */
+      --yellow: #FDF1D6;       /* Warm buttercup */
+      --green: #E2F3E4;        /* Soft mint green */
+      --accent: #E29578;       /* Terracotta warm clay */
+      --border: #F0E6DD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Bubbly, Whimsical Navbar */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: rgba(250, 246, 240, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 2px dashed var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-name {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-name span.emoji {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      background: var(--pink);
+    }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem 2rem;
+      position: relative;
+    }
+
+    .hero-cloud {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.15;
+      animation: floatClouds 20s infinite alternate ease-in-out;
+    }
+    .c1 { top: 15%; left: 10%; }
+    .c2 { top: 30%; right: 10%; animation-delay: -5s; }
+
+    @keyframes floatClouds {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(40px, 0); }
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Main Grid */
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      flex-grow: 1;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .book-card {
+      background: #FFFFFF;
+      border: 3px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--pink);
+    }
+
+    .book-card:nth-child(2n)::before { background: var(--blue); }
+    .book-card:nth-child(3n)::before { background: var(--yellow); }
+    .book-card:nth-child(4n)::before { background: var(--green); }
+
+    .book-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(74, 59, 50, 0.05);
+    }
+
+    .book-icon {
+      font-size: 3rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .book-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .book-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .book-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      background: var(--blue);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .book-btn:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    /* IMMERSIVE BOOK VIEWER OVERLAY */
+    .viewer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(74, 59, 50, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .viewer-card {
+      background: #FFFFFF;
+      border-radius: 32px;
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 10;
+      border: 4px solid var(--border);
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(74, 59, 50, 0.15);
+      animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(40px) scale(0.95); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .viewer-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      background: var(--pink);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: transform 0.15s;
+    }
+
+    .viewer-close:hover {
+      transform: scale(1.1) rotate(90deg);
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .slide-page-indicator {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-quote {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin: 2rem 0;
+      line-height: 1.5;
+    }
+
+    .interactive-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .interactive-card {
+      border-radius: 20px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border: 2px dashed var(--border);
+      transition: transform 0.2s;
+    }
+
+    .interactive-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-label {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .action-card { background: var(--yellow); border-color: rgba(226, 149, 120, 0.15); }
+    .action-card .card-label { color: #D4AF37; }
+    .sound-card { background: var(--blue); border-color: rgba(113, 112, 255, 0.15); cursor: pointer; }
+    .sound-card .card-label { color: #2D9CDB; }
+
+    .card-body {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .viewer-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px dashed var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .control-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      padding: 0.75rem 1.75rem;
+      border-radius: 9999px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+
+    .control-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 3rem;
+      border-top: 2px dashed var(--border);
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bubbly Navbar -->
+  <header class="nav">
+    <a href="index.html" class="nav-name">
+      <span class="emoji">🧸</span> Mom's Corner
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">My Portfolio</a>
+      <a href="about.html">About Me</a>
+    </nav>
+  </header>
+
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="hero-cloud c1">☁️</div>
+    <div class="hero-cloud c2">☁️</div>
+    <h1>Toddler Learning Adventures</h1>
+    <p>A collection of warm, interactive, and playful storybooks compiled to stimulate sensory learning, actions, and speech imitation for parents and toddlers!</p>
+  </section>
+
+  <!-- Main Container -->
+  <main class="container">
+    <h2>Interactive Storybooks</h2>
+    <div class="books-grid" id="books-container">
+      <!-- Storybooks will load dynamically from JSON files -->
+    </div>
+  </main>
+
+  <!-- IMMERSIVE BOOK VIEWER OVERLAY -->
+  <div class="viewer-overlay" id="viewer-overlay">
+    <div class="viewer-card">
+      <button class="viewer-close" onclick="closeBook()">✕</button>
+      
+      <div class="slide-page-indicator" id="viewer-page">Page 1</div>
+      
+      <div class="slide-quote" id="viewer-quote">"Loading sweet story..."</div>
+      
+      <div class="interactive-grid">
+        <div class="interactive-card action-card">
+          <div class="card-label">🫵 ACTION</div>
+          <div class="card-body" id="viewer-action">Loading activity...</div>
+        </div>
+        <div class="interactive-card sound-card" onclick="playSoundPrompt()">
+          <div class="card-label">🔊 SOUND</div>
+          <div class="card-body" id="viewer-sound">Loading sound...</div>
+        </div>
+      </div>
+      
+      <div class="viewer-controls">
+        <button class="control-btn" id="prev-btn" onclick="prevPage()">← Back</button>
+        <span id="page-dot-indicator" style="font-size: 1.5rem; letter-spacing: 0.25em;"></span>
+        <button class="control-btn" id="next-btn" onclick="nextPage()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> Kanchi Gupta · All Rights Reserved. Made with love for little seekers.</p>
+  </footer>
+
+  <!-- Book Database and Sliding Viewer Script -->
+  <script>
+    // Embedded initial book: Three Little Pigs
+    const storybooks = [
+      {
+      "id": "the-brave-little-butterfly",
+      "title": "The Brave Little Butterfly",
+      "desc": "Follow Bella the butterfly on a sensory journey of fluttering wings, warm sunshine, and gentle flower landing actions!",
+      "icon": "🦋",
+      "pages": [
+            {
+                  "quote": "Look! A tiny, sleeping green caterpillar in a cozy brown shell.",
+                  "action": "Touch your finger to your hand and pretend to sleep: \"Shh, sleeping!",
+                  "sound": "Soft snoring: \"Zzz, zzz, zzz."
+            },
+            {
+                  "quote": "Crack! Bella the butterfly opens her wings! One, two, three!",
+                  "action": "Flap your arms slowly like butterfly wings together.",
+                  "sound": "Flutter, flutter, flutter!"
+            },
+            {
+                  "quote": "Oh! The wind is blowing Bella high into the sky!",
+                  "action": "Stretch your arms way up high to touch the clouds.",
+                  "sound": "Take a deep breath: \"Whoosh, whoosh!"
+            },
+            {
+                  "quote": "Time to rest! Bella lands softly on a sweet, pretty pink flower.",
+                  "action": "Tap your finger gently onto your toddler's knee: \"Soft landing!",
+                  "sound": "Sniff deeply: \"Mmm, smells so pretty!"
+            }
+      ]
+},
+      {
+        id: "three-little-pigs",
+        title: "The Three Little Pigs",
+        desc: "An interactive, sensory guide for parents and toddlers to count, tap, and knock together while building houses!",
+        icon: "🐷",
+        pages: [
+          {
+            quote: "\"Look! Three happy little pigs! One, two, three!\"",
+            action: "Point to each pig and count together with your toddler.",
+            sound: "\"Oink, oink, oink!\""
+          },
+          {
+            quote: "\"This pig is building a house. It is made of yellow straw!\"",
+            action: "Tap the yellow straw on the page together.",
+            sound: "\"Swish, swish, swish!\""
+          },
+          {
+            quote: "\"This pig is building a house. It is made of wooden sticks!\"",
+            action: "Point to the tree branches and wooden sticks.",
+            sound: "Tap on the table: \"Tap, tap, tap!\""
+          },
+          {
+            quote: "\"This pig is building a strong house. It is made of red bricks!\"",
+            action: "Knock on the floor or table: \"Is it strong?\"",
+            sound: "\"Clink, clink, clink!\""
+          },
+          {
+            quote: "\"Blow, blow, blow! Can you blow the strong brick house down?\"",
+            action: "Take a deep breath and pretend to blow together.",
+            sound: "\"Whoosh, whoosh!\" (No, it is too strong!)"
+          }
+        ]
+      }
+    ];
+
+    let activeBook = null;
+    let activePageIndex = 0;
+
+    // Load book cards on page
+    const container = document.getElementById("books-container");
+    
+    function renderBookCards() {
+      container.innerHTML = "";
+      storybooks.forEach((book, index) => {
+        const card = document.createElement("div");
+        card.className = "book-card";
+        card.onclick = () => openBook(book.id);
+        card.innerHTML = `
+          <div>
+            <div class="book-icon">${book.icon}</div>
+            <h3 class="book-title">${book.title}</h3>
+            <p class="book-desc">${book.desc}</p>
+          </div>
+          <button class="book-btn">Read Story →</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    renderBookCards();
+
+    // Viewer controllers
+    const overlay = document.getElementById("viewer-overlay");
+    const vPage = document.getElementById("viewer-page");
+    const vQuote = document.getElementById("viewer-quote");
+    const vAction = document.getElementById("viewer-action");
+    const vSound = document.getElementById("viewer-sound");
+    const dotIndicator = document.getElementById("page-dot-indicator");
+
+    function openBook(bookId) {
+      activeBook = storybooks.find(b => b.id === bookId);
+      if (!activeBook) return;
+      
+      activePageIndex = 0;
+      overlay.style.display = "flex";
+      updateViewer();
+    }
+
+    function closeBook() {
+      overlay.style.display = "none";
+      activeBook = null;
+    }
+
+    function updateViewer() {
+      if (!activeBook) return;
+      const page = activeBook.pages[activePageIndex];
+      
+      vPage.textContent = `Page ${activePageIndex + 1} of ${activeBook.pages.length}`;
+      vQuote.textContent = page.quote;
+      vAction.textContent = page.action;
+      vSound.textContent = page.sound;
+
+      // Update dots
+      let dots = "";
+      for (let i = 0; i < activeBook.pages.length; i++) {
+        dots += i === activePageIndex ? "●" : "○";
+      }
+      dotIndicator.textContent = dots;
+
+      // Enable/disable buttons
+      document.getElementById("prev-btn").disabled = activePageIndex === 0;
+      document.getElementById("next-btn").textContent = activePageIndex === activeBook.pages.length - 1 ? "Finish" : "Next →";
+    }
+
+    function nextPage() {
+      if (activePageIndex < activeBook.pages.length - 1) {
+        activePageIndex++;
+        updateViewer();
+      } else {
+        closeBook();
+      }
+    }
+
+    function prevPage() {
+      if (activePageIndex > 0) {
+        activePageIndex--;
+        updateViewer();
+      }
+    }
+
+    function playSoundPrompt() {
+      // Simulate sound click with cute browser speak or vibration!
+      if ('vibrate' in navigator) navigator.vibrate(50);
+      
+      // Use text-to-speech to read the sound cue in a warm voice!
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const speech = new SpeechSynthesisUtterance(activeBook.pages[activePageIndex].sound);
+        speech.rate = 1.0;
+        speech.pitch = 1.2; // Slightly higher pitch for kids!
+        window.speechSynthesis.speak(speech);
+      }
+    }
+
+    // Keyboard support
+    document.addEventListener("keydown", (e) => {
+      if (!activeBook) return;
+      if (e.key === "ArrowRight") nextPage();
+      else if (e.key === "ArrowLeft") prevPage();
+      else if (e.key === "Escape") closeBook();
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
