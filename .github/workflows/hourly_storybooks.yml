@@ -1,0 +1,36 @@
+name: Hourly Toddler Storybook Publisher
+
+on:
+  schedule:
+    - cron: '0 */5 * * *'  # Runs every 5 hours autonomously
+  workflow_dispatch:      # Allows manual trigger of the workflow from GitHub UI!
+
+permissions:
+  contents: write
+
+jobs:
+  publish_storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install reportlab dependency
+        run: |
+          pip install reportlab
+
+      - name: Execute Cloud Storybook Factory
+        run: |
+          python3 cloud_publish_storybook.py
+
+      - name: Commit and Push Changes Live
+        run: |
+          git config --global user.name "kanchi gupta"
+          git config --global user.email "kanchivivgupta@gmail.com"
+          git add mom-corner.html notes/storybooks/ published_storybooks_log.txt
+          git diff-index --quiet HEAD || (git commit -m "chore(cloud): autonomously publish daily scheduled printable storybook PDF" && git push)
