@@ -1,0 +1,157 @@
+import os
+import re
+import sys
+import shutil
+import json
+import subprocess
+
+# Emoji and description mapping dictionaries for smart, automatic metadata inference
+EMOJI_MAPPING = {
+    "eat": "🥗",
+    "fussy": "🥗",
+    "food": "🥗",
+    "healthy": "🥗",
+    "toy": "🧸",
+    "play": "🧸",
+    "clean": "🧸",
+    "share": "🤝",
+    "sharing": "🤝",
+    "potty": "🚽",
+    "toilet": "🚽",
+    "sleep": "🌙",
+    "bed": "🌙",
+    "night": "🌙",
+    "bath": "🛁",
+    "brush": "🪥",
+    "teeth": "🪥",
+    "brave": "🦋",
+    "butterfly": "🦋",
+    "pig": "🐷",
+    "animal": "🐶"
+}
+
+DESC_MAPPING = {
+    "eat": "An interactive, printable storybook helping toddlers understand and enjoy healthy eating habits and overcome fussy eating!",
+    "fussy": "An interactive, printable storybook helping toddlers understand and enjoy healthy eating habits and overcome fussy eating!",
+    "toy": "An interactive, printable storybook helping toddlers understand and enjoy cleaning up their toys and organizing their play spaces!",
+    "clean": "An interactive, printable storybook helping toddlers understand and enjoy cleaning up their toys and organizing their play spaces!",
+    "share": "A printable, interactive storybook teaching toddlers about sharing toys, taking turns, and the joy of cooperative play!",
+    "potty": "A playful, encouraging printable storybook supporting parents and toddlers through potty training milestones with confidence!",
+    "sleep": "A warm, gentle printable storybook designed to help toddlers settle down, follow bedtime routines, and fall asleep peacefully!",
+    "bath": "A splashy, fun printable storybook helping toddlers enjoy bath time routines and water play safety!",
+    "brush": "A happy, printable storybook designed to encourage toddlers to brush their teeth daily and enjoy healthy smiles!"
+}
+
+def infer_metadata(filename):
+    clean_name = filename.lower().replace("_", " ").replace("-", " ").replace(".pdf", "").replace("storybook", "").strip()
+    
+    # Capitalize title words cleanly
+    title = clean_name.title()
+    
+    # Infer Emoji Icon
+    icon = "📖" # Default
+    for key, value in EMOJI_MAPPING.items():
+        if key in clean_name:
+            icon = value
+            break
+            
+    # Infer Description
+    desc = f"An interactive, printable storybook designed for parents and toddlers to read and enjoy milestones together!" # Default
+    for key, value in DESC_MAPPING.items():
+        if key in clean_name:
+            desc = value
+            break
+            
+    slug = clean_name.replace(" ", "-").strip()
+    
+    return title, desc, icon, slug
+
+def run_local_storybook_sync():
+    print("[Local Sync] Starting local storybook auto-publishing scan...")
+    source_dir = "/Users/kanchigupta/Desktop/AI_PROJECTS/kids storybooks"
+    project_root = "/Users/kanchigupta/Desktop/AI_PROJECTS/handhold"
+    dest_dir = os.path.join(project_root, "notes/storybooks")
+    kids_html_path = os.path.join(project_root, "kids-corner.html")
+
+    if not os.path.exists(source_dir):
+        print(f"[Local Sync] ERROR: Source folder not found at {source_dir}. Skipping scan.")
+        return
+
+    os.makedirs(dest_dir, exist_ok=True)
+
+    with open(kids_html_path, 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
+    new_books_found = False
+
+    # Scan source folder for PDFs
+    all_pdfs = [f for f in os.listdir(source_dir) if f.endswith('.pdf')]
+    print(f"[Local Sync] Found {len(all_pdfs)} total PDFs in source directory.")
+
+    for pdf in all_pdfs:
+        title, desc, icon, slug = infer_metadata(pdf)
+        pdf_public_name = f"Master_{slug}_Storybook.pdf"
+        pdf_dest_path = os.path.join(dest_dir, pdf_public_name)
+        pdf_source_path = os.path.join(source_dir, pdf)
+
+        # Check if already registered in kids-corner.html
+        if f'id: "{slug}"' in html_content or f'id: \'{slug}\'' in html_content:
+            continue
+
+        print(f"[Local Sync] Found NEW Storybook PDF: {pdf}")
+        print(f"            Title: {title} | Icon: {icon}")
+
+        # 1. Copy the PDF file to her public website notes folder
+        shutil.copy(pdf_source_path, pdf_dest_path)
+        print(f"            Copied to public path: notes/storybooks/{pdf_public_name}")
+
+        # 2. Ingest the book metadata in her HTML database list
+        new_book_obj = {
+            "id": slug,
+            "title": title,
+            "desc": desc,
+            "icon": icon,
+            "pdfUrl": f"notes/storybooks/{pdf_public_name}",
+            "pages": [
+                {
+                    "quote": f"\"Look at the happy story about {title}!\"",
+                    "action": "Read the printed pages together and follow the action prompts.",
+                    "sound": "\"Hooray, yum, zoom!\""
+                }
+            ]
+        }
+        
+        # Inject into storybooks array inside kids-corner.html
+        new_book_json = json.dumps(new_book_obj, indent=6, ensure_ascii=False)
+        
+        # Find const storybooks = [
+        array_pos = html_content.find('const storybooks = [')
+        if array_pos == -1:
+            print("[Local Sync] ERROR: Could not find const storybooks array in kids-corner.html")
+            return
+            
+        insert_pos = html_content.find('\n', array_pos) + 1
+        html_content = html_content[:insert_pos] + "      " + new_book_json + ",\n" + html_content[insert_pos:]
+        new_books_found = True
+
+    if new_books_found:
+        # Write back updated kids-corner.html
+        with open(kids_html_path, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        print("[Local Sync] Successfully updated and registered new books in kids-corner.html!")
+
+        # 3. Commit and push the updates live to GitHub and Hostinger automatically!
+        try:
+            print("[Local Sync] Running git push to deploy changes live...")
+            subprocess.run(["git", "add", "."], cwd=project_root, check=True)
+            subprocess.run(["git", "commit", "-m", "chore(kids): autonomously index and publish newly discovered local storybook PDFs"], cwd=project_root, check=True)
+            subprocess.run(["git", "pull", "origin", "main", "--rebase"], cwd=project_root, check=True)
+            subprocess.run(["git", "push", "origin", "main"], cwd=project_root, check=True)
+            print("[Local Sync] SUCCESS! New storybooks deployed to production automatically!")
+        except Exception as e:
+            print(f"[Local Sync] Git deployment error: {e}")
+    else:
+        print("[Local Sync] All storybooks are already indexed up-to-date. No action needed.")
+
+if __name__ == '__main__':
+    run_local_storybook_sync()
