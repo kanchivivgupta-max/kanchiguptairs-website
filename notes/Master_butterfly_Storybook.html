@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sharing is Fun! - A Toddler Interactive Storybook</title>
+    <title>The Brave Butterfly - A Children's Picture Book</title>
     <style>
         @font-face {
             font-family: 'Bubblegum Sans';
             src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
         }
-        
         
         @page {
             size: letter landscape;
@@ -40,20 +39,20 @@
             align-items: center;
             padding: 40px 60px;
             position: relative;
-            background-color: #f7fee7; /* Soft lime-tinted background for sharing/friendship */
+            background-color: #f0fdf4; /* Soft green tinted background */
         }
 
         /* Cover Page Styling */
         .cover-page {
             justify-content: center;
-            background: linear-gradient(135deg, #ecfccb 0%, #d9f99d 100%); /* Warm friendship green */
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); /* Green garden gradient */
             padding: 60px;
         }
 
         .cover-title {
             font-size: 48px;
             font-weight: 800;
-            color: #3f6212;
+            color: #15803d;
             margin: 0;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
@@ -62,7 +61,7 @@
         .cover-subtitle {
             font-size: 24px;
             font-weight: 600;
-            color: #4d7c0f;
+            color: #16a34a;
             margin: 10px 0 30px 0;
             text-align: center;
         }
@@ -88,11 +87,11 @@
             margin-top: 30px;
             font-size: 16px;
             font-weight: 600;
-            color: #3f6212;
-            background-color: #ecfccb;
+            color: #14532d;
+            background-color: #dcfce7;
             padding: 8px 24px;
             border-radius: 9999px;
-            border: 1px solid #d9f99d;
+            border: 1px solid #bbf7d0;
         }
 
         /* Standard Page layout */
@@ -102,7 +101,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            max-height: 65vh;
+            max-height: 70vh;
             margin-bottom: 20px;
         }
 
@@ -122,49 +121,15 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
         }
 
         .parent-script {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 800;
             color: #1e293b;
             margin: 0;
             line-height: 1.3;
-        }
-
-        .guides {
-            display: flex;
-            gap: 40px;
-            justify-content: center;
-            background-color: #f7fee7;
-            padding: 12px 32px;
-            border-radius: 16px;
-            border: 1px dashed #d9f99d;
-        }
-
-        .guide-box {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 15px;
-            color: #4d7c0f;
-        }
-
-        .guide-label {
-            font-weight: 800;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #3f6212;
-            background-color: #ecfccb;
-            padding: 2px 8px;
-            border-radius: 4px;
-            border: 1px solid #d9f99d;
-        }
-
-        .guide-text {
-            font-weight: 600;
         }
 
         /* Page Numbering */
@@ -174,7 +139,7 @@
             right: 40px;
             font-size: 14px;
             font-weight: bold;
-            color: #a3e635;
+            color: #16a34a;
         }
     </style>
 </head>
@@ -182,22 +147,21 @@
 
     <!-- Cover Page -->
     <div class="page cover-page">
-        <h1 class="cover-title">Sharing is Fun!</h1>
-        <p class="cover-subtitle">An Interactive Toddler Storybook with Pip and Pop</p>
+        <h1 class="cover-title">The Brave Butterfly</h1>
+        <p class="cover-subtitle">A Story of Trying Again with Bella the Butterfly</p>
         <div class="cover-image-container">
-            <img src="./images/sharing_8.png" alt="Sharing Cover">
+            <img src="./images/butterfly_8.png" alt="Brave Butterfly Cover">
         </div>
-        <div class="cover-footer">Sharing Our Toys Keeps Pip and Pop Happy!</div>
+        <div class="cover-footer">Never Give Up, Even If You Fall!</div>
     </div>
 
     <!-- Page 1 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_1.png" alt="Pip and Pop Play at the Park">
+            <img src="./images/butterfly_1.png" alt="Bella Wants to Fly">
         </div>
         <div class="text-container">
-            <p class="parent-script">"Pip the puppy and Pop the panda meet at the park! Wave, wave!"</p>
-            
+            <p class="parent-script">"Bella the little butterfly watches the birds. 'I want to fly, too!'"</p>
         </div>
         <div class="page-number">Page 1</div>
     </div>
@@ -205,11 +169,10 @@
     <!-- Page 2 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_2.png" alt="Pop's Red Ball">
+            <img src="./images/butterfly_2.png" alt="Mama Shows the Way">
         </div>
         <div class="text-container">
-            <p class="parent-script">"Pop the panda has a bright red ball! Bounce, bounce!"</p>
-            
+            <p class="parent-script">"Mama butterfly flutters her big purple wings. 'Watch me, Bella!'"</p>
         </div>
         <div class="page-number">Page 2</div>
     </div>
@@ -217,11 +180,10 @@
     <!-- Page 3 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_3.png" alt="Share the Ball">
+            <img src="./images/butterfly_3.png" alt="Ready, Set, Hop!">
         </div>
         <div class="text-container">
-            <p class="parent-script">"Roll the red ball to Pip. Roll, roll! Here you go!"</p>
-            
+            <p class="parent-script">"Bella takes a big breath. One, two, three... hop!"</p>
         </div>
         <div class="page-number">Page 3</div>
     </div>
@@ -229,11 +191,10 @@
     <!-- Page 4 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_4.png" alt="Pip's Building Blocks">
+            <img src="./images/butterfly_4.png" alt="Oh No, A Fall!">
         </div>
         <div class="text-container">
-            <p class="parent-script">"Pip has colorful toy blocks! One, two, three blocks!"</p>
-            
+            <p class="parent-script">"Oops! Bella falls onto a soft yellow flower. 'Ow, my wing!'"</p>
         </div>
         <div class="page-number">Page 4</div>
     </div>
@@ -241,11 +202,10 @@
     <!-- Page 5 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_5.png" alt="Building Tower Together">
+            <img src="./images/butterfly_5.png" alt="Mama's Warm Hug">
         </div>
         <div class="text-container">
-            <p class="parent-script">"Build a tall tower together. Up, up! So high!"</p>
-            
+            <p class="parent-script">"Mama hugs Bella. 'It is okay, my sweet baby. Try again!'"</p>
         </div>
         <div class="page-number">Page 5</div>
     </div>
@@ -253,11 +213,10 @@
     <!-- Page 6 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_6.png" alt="Tower Crash">
+            <img src="./images/butterfly_6.png" alt="Get Up and Try">
         </div>
         <div class="text-container">
-            <p class="parent-script">"The big tower falls down! Crash! Oh no!"</p>
-            
+            <p class="parent-script">"Bella stands up. She flaps her wings. Flap, flap, flap!"</p>
         </div>
         <div class="page-number">Page 6</div>
     </div>
@@ -265,11 +224,10 @@
     <!-- Page 7 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_7.png" alt="Yummy Cookie Snap">
+            <img src="./images/butterfly_7.png" alt="High in the Sky">
         </div>
         <div class="text-container">
-            <p class="parent-script">"Pop has a sweet banana cookie. Break it in half. Snap!"</p>
-            
+            <p class="parent-script">"Look at Bella fly! Up in the warm blue sky!"</p>
         </div>
         <div class="page-number">Page 7</div>
     </div>
@@ -277,11 +235,10 @@
     <!-- Page 8 -->
     <div class="page">
         <div class="image-container">
-            <img src="./images/sharing_8.png" alt="Happy Hug Friends">
+            <img src="./images/butterfly_8.png" alt="Flying Together">
         </div>
         <div class="text-container">
-            <p class="parent-script">"Pip and Pop are best friends! Sharing is fun! Hug!"</p>
-            
+            <p class="parent-script">"Bella and Mama fly together. 'We did it! We never give up!'"</p>
         </div>
         <div class="page-number">Page 8</div>
     </div>

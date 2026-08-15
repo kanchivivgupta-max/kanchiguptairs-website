@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>Goodnight, Barnaby Bear! - A Toddler Interactive Storybook</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        @font-face {
+            font-family: 'Bubblegum Sans';
+            src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
+        }
+        
         
         @page {
             size: letter landscape;
@@ -18,7 +22,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Bubblegum Sans', sans-serif;
             background-color: #ffffff;
             color: #2d3748;
             -webkit-print-color-adjust: exact;
@@ -237,16 +241,7 @@
         </div>
         <div class="text-container">
             <p class="parent-script">"Playtime is over! The warm sun goes down. Bye-bye, sun!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Wave goodbye to the window or sky</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Yawn... Chime, chime!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 1</div>
     </div>
@@ -258,16 +253,7 @@
         </div>
         <div class="text-container">
             <p class="parent-script">"Splish, splash! Barnaby takes a warm bubble bath!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Gently tap the water on the page or splash fingers in the air</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Splash, splash! Squeak!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 2</div>
     </div>
@@ -279,16 +265,7 @@
         </div>
         <div class="text-container">
             <p class="parent-script">"Put on the cozy yellow pajamas! Soft and warm!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Run your hand down the child's arm to mimic putting on sleeves</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Zip, zip! Snuggly!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 3</div>
     </div>
@@ -300,16 +277,7 @@
         </div>
         <div class="text-container">
             <p class="parent-script">"Brush the teeth clean! Brush up and down. Sparkle!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Make a brushing motion on your teeth</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Swish, swish, swish!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 4</div>
     </div>
@@ -321,16 +289,7 @@
         </div>
         <div class="text-container">
             <p class="parent-script">"Choose a bedtime storybook. Point to the blue book!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Point to the blue book on the shelf</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Turn the page: rustle, rustle!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 5</div>
     </div>
@@ -342,16 +301,7 @@
         </div>
         <div class="text-container">
             <p class="parent-script">"Climb into the cozy wooden bed. Crawl, crawl!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Walk two fingers slowly across the page to the bed</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Creep, creep! Hop!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 6</div>
     </div>
@@ -363,16 +313,7 @@
         </div>
         <div class="text-container">
             <p class="parent-script">"Tuck under the soft blue blanket. Pat, pat! Warm and snug!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Pretend to pull a blanket up to the child's chin and pat it gently</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Sigh... Snuggle!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 7</div>
     </div>
@@ -380,20 +321,11 @@
     <!-- Page 8 (Placeholder) -->
     <div class="page">
         <div class="image-container">
-            <img src="bedtime_8.png" alt="Scene 8: Goodnight, Barnaby!">
+            <img src="./images/bedtime_8.png" alt="Goodnight, Barnaby!">
         </div>
         <div class="text-container">
             <p class="parent-script">"Goodnight, Barnaby Bear! Shh... close your eyes. Sleep tight!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Close your eyes and whisper "goodnight"</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Shh... Goodnight. Sleepy breathing."</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 8</div>
     </div>

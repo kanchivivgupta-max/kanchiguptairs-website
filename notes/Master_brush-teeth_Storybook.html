@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>Brush, Brush, Brush Your Teeth! - A Toddler Interactive Storybook</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        @font-face {
+            font-family: 'Bubblegum Sans';
+            src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
+        }
+        
         
         @page {
             size: letter landscape;
@@ -18,7 +22,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Bubblegum Sans', sans-serif;
             background-color: #ffffff;
             color: #2d3748;
             -webkit-print-color-adjust: exact;
@@ -111,50 +115,6 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
-        /* Interactive Drawing/Paste Placeholder box */
-        .image-placeholder {
-            width: 65%;
-            height: 55vh;
-            border: 4px dashed #fbbf24;
-            border-radius: 24px;
-            background-color: #fffdf5;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            text-align: center;
-            color: #b45309;
-            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
-        }
-
-        .placeholder-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: #b45309;
-            margin-bottom: 12px;
-        }
-
-        .placeholder-desc {
-            font-size: 13px;
-            font-weight: 600;
-            color: #d97706;
-            max-width: 480px;
-            line-height: 1.5;
-            background-color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 12px;
-            border: 1px solid #fde68a;
-        }
-
-        .placeholder-filename {
-            font-size: 12px;
-            font-weight: 800;
-            color: #78350f;
-            margin-top: 10px;
-            text-transform: uppercase;
-        }
-
         .text-container {
             width: 100%;
             text-align: center;
@@ -225,7 +185,7 @@
         <h1 class="cover-title">Brush, Brush, Brush Your Teeth!</h1>
         <p class="cover-subtitle">An Interactive Toddler Storybook featuring Dino the Dinosaur</p>
         <div class="cover-image-container">
-            <img src="brush_teeth_1.png" alt="Brushing Teeth Cover">
+            <img src="./images/brush_teeth_8.png" alt="Brushing Teeth Cover">
         </div>
         <div class="cover-footer">Brushing Teeth Keeps Dino's Smile Happy!</div>
     </div>
@@ -233,20 +193,11 @@
     <!-- Page 1 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_1.png" alt="Dino Eating Apple">
+            <img src="./images/brush_teeth_1.png" alt="Dino Eating Apple">
         </div>
         <div class="text-container">
             <p class="parent-script">"Dino the dinosaur eats a sweet red apple! Crunch, crunch, crunch!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Pretend to hold an apple and take a big bite</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Crunch, crunch, crunch! Yum!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 1</div>
     </div>
@@ -254,20 +205,11 @@
     <!-- Page 2 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_2.png" alt="Time to Brush">
+            <img src="./images/brush_teeth_2.png" alt="Time to Brush">
         </div>
         <div class="text-container">
             <p class="parent-script">"Uh-oh, apple in Dino's teeth! Time to brush!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Point to your own teeth and shake your head</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Uh-oh! Dirty teeth!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 2</div>
     </div>
@@ -275,20 +217,11 @@
     <!-- Page 3 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_3.png" alt="Yellow Toothbrush">
+            <img src="./images/brush_teeth_3.png" alt="Yellow Toothbrush">
         </div>
         <div class="text-container">
             <p class="parent-script">"Pick up the little yellow toothbrush! Hold it tight!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Pretend to pick up a toothbrush and hold it in your hand</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Got it! Yay!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 3</div>
     </div>
@@ -296,104 +229,59 @@
     <!-- Page 4 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_4.png" alt="Squeeze Toothpaste">
+            <img src="./images/brush_teeth_4.png" alt="Squeeze Toothpaste">
         </div>
         <div class="text-container">
             <p class="parent-script">"Squeeze a tiny drop of white toothpaste. Squeeze! Plop!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Pretend to squeeze a tube of toothpaste onto a brush</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Squeeeeeze! Plop!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 4</div>
     </div>
 
-    <!-- Page 5 (Placeholder) -->
+    <!-- Page 5 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_5.png" alt="Scene 5: Brush the Front!">
+            <img src="./images/brush_teeth_5.png" alt="Brush Front Teeth">
         </div>
         <div class="text-container">
             <p class="parent-script">"Brush the front teeth! Up and down, up and down!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Move your finger up and down in front of your mouth</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Brush, brush, brush!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 5</div>
     </div>
 
-    <!-- Page 6 (Placeholder) -->
+    <!-- Page 6 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_6.png" alt="Scene 6: Brush the Back!">
+            <img src="./images/brush_teeth_6.png" alt="Brush Back Teeth">
         </div>
         <div class="text-container">
             <p class="parent-script">"Brush the back teeth! Round and round, round and round!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Move your finger in circles near your cheek</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Tickle, tickle! Scrub, scrub!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 6</div>
     </div>
 
-    <!-- Page 7 (Placeholder) -->
+    <!-- Page 7 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_7.png" alt="Scene 7: Rinse and Spit">
+            <img src="./images/brush_teeth_7.png" alt="Rinse and Spit">
         </div>
         <div class="text-container">
             <p class="parent-script">"Take a sip of water. Swish, swish... now spit! Ptu!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Pretend to take a drink, puff your cheeks, and then pretend to spit</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Swish, swish... Ptu!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 7</div>
     </div>
 
-    <!-- Page 8 (Placeholder) -->
+    <!-- Page 8 -->
     <div class="page">
         <div class="image-container">
-            <img src="brush_teeth_8.png" alt="Scene 8: Shiny Dinosaur Smile!">
+            <img src="./images/brush_teeth_8.png" alt="Shiny Smile Dino">
         </div>
         <div class="text-container">
             <p class="parent-script">"Look at the clean, shiny teeth! What a happy smile! Clap, clap!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Give your child a big high-five and clap hands</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Sparkle, sparkle! Hooray!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 8</div>
     </div>

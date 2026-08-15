@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>Clean Up, Clean Up! - A Toddler Interactive Storybook</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        @font-face {
+            font-family: 'Bubblegum Sans';
+            src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
+        }
+        
         
         @page {
             size: letter landscape;
@@ -18,7 +22,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Bubblegum Sans', sans-serif;
             background-color: #ffffff;
             color: #2d3748;
             -webkit-print-color-adjust: exact;
@@ -238,7 +242,7 @@
         <h1 class="cover-title">Clean Up, Clean Up!</h1>
         <p class="cover-subtitle">An Interactive Toddler Storybook about Cleaning Up Toys</p>
         <div class="cover-image-container">
-            <img src="../images/clean_up_1.png" alt="Clean Up Cover">
+            <img src="./images/clean_up_1.png" alt="Clean Up Cover">
         </div>
         <div class="cover-footer">Cleaning Up Our Toys Keeps Our Room Happy!</div>
     </div>
@@ -246,20 +250,11 @@
     <!-- Page 1 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_1.png" alt="Milo Playing with Toys">
+            <img src="./images/clean_up_1.png" alt="Milo Playing with Toys">
         </div>
         <div class="text-container">
             <p class="parent-script">"Milo the kitty plays with his toys! Vroom, vroom! Crash!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Zoom a hand across the air like a toy car</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Vroom, vroom!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 1</div>
     </div>
@@ -267,20 +262,11 @@
     <!-- Page 2 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_2.png" alt="Messy Room">
+            <img src="./images/clean_up_2.png" alt="Messy Room">
         </div>
         <div class="text-container">
             <p class="parent-script">"Uh-oh! Toys are everywhere! Time to clean up!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Shake your head and point to the messy floor</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Uh-oh!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 2</div>
     </div>
@@ -288,20 +274,11 @@
     <!-- Page 3 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_3.png" alt="Empty Toy Box">
+            <img src="./images/clean_up_3.png" alt="Empty Toy Box">
         </div>
         <div class="text-container">
             <p class="parent-script">"Here is the big toy box! Open the lid. Creak!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Lift hands up high like opening a giant box lid</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Creeeeak!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 3</div>
     </div>
@@ -309,20 +286,11 @@
     <!-- Page 4 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_4.png" alt="Putting Car Away">
+            <img src="./images/clean_up_4.png" alt="Putting Car Away">
         </div>
         <div class="text-container">
             <p class="parent-script">"Roll the red car into the box. Zoom! Bye-bye, car!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Pretend to roll a car with your hand into the box</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Zoooom!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 4</div>
     </div>
@@ -330,20 +298,11 @@
     <!-- Page 5 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_5.png" alt="Putting Blocks Away">
+            <img src="./images/clean_up_5.png" alt="Putting Blocks Away">
         </div>
         <div class="text-container">
             <p class="parent-script">"Drop the blocks in! Clink, clack! One, two, three!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Tap fingers on the page or table, counting</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Clink, clack!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 5</div>
     </div>
@@ -351,20 +310,11 @@
     <!-- Page 6 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_6.png" alt="Tucking Teddy In">
+            <img src="./images/clean_up_6.png" alt="Tucking Teddy In">
         </div>
         <div class="text-container">
             <p class="parent-script">"Hug the soft teddy bear. Shh... time to sleep, teddy!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Hug yourself tightly and close your eyes</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">Whisper: "Shh... goodnight, teddy."</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 6</div>
     </div>
@@ -372,20 +322,11 @@
     <!-- Page 7 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_7.png" alt="Closing Box Lid">
+            <img src="./images/clean_up_7.png" alt="Closing Box Lid">
         </div>
         <div class="text-container">
             <p class="parent-script">"Puuush the lid down. Pat, pat! All tucked in!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Push down with both hands and pat the page</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Thud! Pat, pat!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 7</div>
     </div>
@@ -393,20 +334,11 @@
     <!-- Page 8 -->
     <div class="page">
         <div class="image-container">
-            <img src="../images/clean_up_8.png" alt="Room Clean and Tidy">
+            <img src="./images/clean_up_8.png" alt="Room Clean and Tidy">
         </div>
         <div class="text-container">
             <p class="parent-script">"All clean! Hooray! Look at the neat rug. Clap, clap!"</p>
-            <div class="guides">
-                <div class="guide-box">
-                    <span class="guide-label">Action</span>
-                    <span class="guide-text">Clap hands happily</span>
-                </div>
-                <div class="guide-box">
-                    <span class="guide-label">Sound</span>
-                    <span class="guide-text">"Hooray! Yay!"</span>
-                </div>
-            </div>
+            
         </div>
         <div class="page-number">Page 8</div>
     </div>
