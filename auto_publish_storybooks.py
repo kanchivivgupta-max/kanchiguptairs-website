@@ -76,6 +76,19 @@ def run_local_storybook_sync():
 
     os.makedirs(dest_dir, exist_ok=True)
 
+    # C: SCAN AND SYNC IMAGES/ILLUSTRATIONS
+    source_images_dir = "/Users/kanchigupta/Desktop/AI_PROJECTS/kids storybooks/images"
+    dest_images_dir = os.path.join(project_root, "notes/images")
+    if os.path.exists(source_images_dir):
+        os.makedirs(dest_images_dir, exist_ok=True)
+        for img in os.listdir(source_images_dir):
+            if img.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp')):
+                src_img_path = os.path.join(source_images_dir, img)
+                dest_img_path = os.path.join(dest_images_dir, img)
+                if not os.path.exists(dest_img_path):
+                    shutil.copy(src_img_path, dest_img_path)
+                    print(f"[Local Sync] Copied NEW illustration: {img}")
+
     with open(kids_html_path, 'r', encoding='utf-8') as f:
         html_content = f.read()
 

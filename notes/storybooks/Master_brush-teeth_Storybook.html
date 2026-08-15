@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brush, Brush, Brush Your Teeth! - A Toddler Interactive Storybook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #fffbeb; /* Soft warm yellow tinted background */
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); /* Warm yellow gradient */
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #b45309;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #d97706;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #78350f;
+            background-color: #fef3c7;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            border: 1px solid #fde68a;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 65vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Interactive Drawing/Paste Placeholder box */
+        .image-placeholder {
+            width: 65%;
+            height: 55vh;
+            border: 4px dashed #fbbf24;
+            border-radius: 24px;
+            background-color: #fffdf5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            color: #b45309;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+        }
+
+        .placeholder-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #b45309;
+            margin-bottom: 12px;
+        }
+
+        .placeholder-desc {
+            font-size: 13px;
+            font-weight: 600;
+            color: #d97706;
+            max-width: 480px;
+            line-height: 1.5;
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid #fde68a;
+        }
+
+        .placeholder-filename {
+            font-size: 12px;
+            font-weight: 800;
+            color: #78350f;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+
+        .parent-script {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .guides {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background-color: #fffbeb;
+            padding: 12px 32px;
+            border-radius: 16px;
+            border: 1px dashed #fde68a;
+        }
+
+        .guide-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #b45309;
+        }
+
+        .guide-label {
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #78350f;
+            background-color: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #fde68a;
+        }
+
+        .guide-text {
+            font-weight: 600;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Brush, Brush, Brush Your Teeth!</h1>
+        <p class="cover-subtitle">An Interactive Toddler Storybook featuring Dino the Dinosaur</p>
+        <div class="cover-image-container">
+            <img src="../images/brush_teeth_1.png" alt="Brushing Teeth Cover">
+        </div>
+        <div class="cover-footer">Brushing Teeth Keeps Dino's Smile Happy!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/brush_teeth_1.png" alt="Dino Eating Apple">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Dino the dinosaur eats a sweet red apple! Crunch, crunch, crunch!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to hold an apple and take a big bite</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Crunch, crunch, crunch! Yum!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/brush_teeth_2.png" alt="Time to Brush">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Uh-oh, apple in Dino's teeth! Time to brush!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Point to your own teeth and shake your head</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Uh-oh! Dirty teeth!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/brush_teeth_3.png" alt="Yellow Toothbrush">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pick up the little yellow toothbrush! Hold it tight!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to pick up a toothbrush and hold it in your hand</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Got it! Yay!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/brush_teeth_4.png" alt="Squeeze Toothpaste">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Squeeze a tiny drop of white toothpaste. Squeeze! Plop!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to squeeze a tube of toothpaste onto a brush</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Squeeeeeze! Plop!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 (Placeholder) -->
+    <div class="page">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <div class="placeholder-title">Scene 5: Brush the Front!</div>
+                <div class="placeholder-desc">Prompt: Children's book illustration of the cute baby green dinosaur with soft orange spikes on his back, brushing his front teeth with his yellow toothbrush. White frothy bubbles are forming around his mouth.</div>
+                <div class="placeholder-filename">File: images/brush_teeth_5.png</div>
+            </div>
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Brush the front teeth! Up and down, up and down!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Move your finger up and down in front of your mouth</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Brush, brush, brush!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 (Placeholder) -->
+    <div class="page">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <div class="placeholder-title">Scene 6: Brush the Back!</div>
+                <div class="placeholder-desc">Prompt: Children's book illustration of the cute baby green dinosaur with soft orange spikes on his back, brushing his back teeth with his yellow toothbrush, smiling and looking in the mirror. More white bubbles are visible.</div>
+                <div class="placeholder-filename">File: images/brush_teeth_6.png</div>
+            </div>
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Brush the back teeth! Round and round, round and round!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Move your finger in circles near your cheek</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Tickle, tickle! Scrub, scrub!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 (Placeholder) -->
+    <div class="page">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <div class="placeholder-title">Scene 7: Rinse and Spit</div>
+                <div class="placeholder-desc">Prompt: Children's book illustration of the cute baby green dinosaur with soft orange spikes on his back, spitting water into the bathroom sink. Clear water flows from the faucet.</div>
+                <div class="placeholder-filename">File: images/brush_teeth_7.png</div>
+            </div>
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Take a sip of water. Swish, swish... now spit! Ptu!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to take a drink, puff your cheeks, and then pretend to spit</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Swish, swish... Ptu!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 (Placeholder) -->
+    <div class="page">
+        <div class="image-container">
+            <div class="image-placeholder">
+                <div class="placeholder-title">Scene 8: Shiny Dinosaur Smile!</div>
+                <div class="placeholder-desc">Prompt: Children's book illustration of the cute baby green dinosaur with soft orange spikes on his back, sitting happily and showing off a big, bright, clean white toothy smile, looking very proud.</div>
+                <div class="placeholder-filename">File: images/brush_teeth_8.png</div>
+            </div>
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Look at the clean, shiny teeth! What a happy smile! Clap, clap!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Give your child a big high-five and clap hands</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Sparkle, sparkle! Hooray!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>
