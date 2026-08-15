@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clean Up, Clean Up! - A Toddler Interactive Storybook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #fcfbf7;
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #b45309;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #d97706;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-placeholder {
+            width: 500px;
+            height: 350px;
+            border: 6px dashed #d97706;
+            border-radius: 24px;
+            background-color: #fffbeb;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #b45309;
+            padding: 24px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cover-image-placeholder h2 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+
+        .cover-image-placeholder p {
+            font-size: 14px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #78350f;
+            background-color: #fef3c7;
+            padding: 8px 24px;
+            border-radius: 9999px;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 65vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Interactive Drawing/Paste Placeholder box */
+        .image-placeholder {
+            width: 60%;
+            height: 55vh;
+            border: 4px dashed #cbd5e1;
+            border-radius: 24px;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .placeholder-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .placeholder-desc {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            max-width: 320px;
+            line-height: 1.4;
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+
+        .parent-script {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .guides {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background-color: #fdf8e2;
+            padding: 12px 32px;
+            border-radius: 16px;
+            border: 1px dashed #fde68a;
+        }
+
+        .guide-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #b45309;
+        }
+
+        .guide-label {
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #d97706;
+            background-color: #fffbeb;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #fde68a;
+        }
+
+        .guide-text {
+            font-weight: 600;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Clean Up, Clean Up!</h1>
+        <p class="cover-subtitle">An Interactive Toddler Storybook about Cleaning Up Toys</p>
+        <div class="cover-image-container">
+            <img src="../images/clean_up_1.png" alt="Clean Up Cover">
+        </div>
+        <div class="cover-footer">Cleaning Up Our Toys Keeps Our Room Happy!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_1.png" alt="Milo Playing with Toys">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Milo the kitty plays with his toys! Vroom, vroom! Crash!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Zoom a hand across the air like a toy car</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Vroom, vroom!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_2.png" alt="Messy Room">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Uh-oh! Toys are everywhere! Time to clean up!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Shake your head and point to the messy floor</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Uh-oh!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_3.png" alt="Empty Toy Box">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Here is the big toy box! Open the lid. Creak!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Lift hands up high like opening a giant box lid</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Creeeeak!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_4.png" alt="Putting Car Away">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Roll the red car into the box. Zoom! Bye-bye, car!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to roll a car with your hand into the box</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Zoooom!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_5.png" alt="Putting Blocks Away">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Drop the blocks in! Clink, clack! One, two, three!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Tap fingers on the page or table, counting</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Clink, clack!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_6.png" alt="Tucking Teddy In">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Hug the soft teddy bear. Shh... time to sleep, teddy!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Hug yourself tightly and close your eyes</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Whisper: "Shh... goodnight, teddy."</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_7.png" alt="Closing Box Lid">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Puuush the lid down. Pat, pat! All tucked in!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Push down with both hands and pat the page</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Thud! Pat, pat!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/clean_up_8.png" alt="Room Clean and Tidy">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"All clean! Hooray! Look at the neat rug. Clap, clap!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Clap hands happily</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Hooray! Yay!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Three Little Pigs Grow Big and Strong - A Toddler Interactive Storybook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #fcfbf7;
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #047857;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #059669;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 8px solid #ffffff;
+        }
+
+        .cover-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #065f46;
+            background-color: #a7f3d0;
+            padding: 8px 24px;
+            border-radius: 9999px;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 65vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Interactive Drawing/Paste Placeholder box */
+        .image-placeholder {
+            width: 60%;
+            height: 55vh;
+            border: 4px dashed #cbd5e1;
+            border-radius: 24px;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .placeholder-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .placeholder-desc {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            max-width: 320px;
+            line-height: 1.4;
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+
+        .parent-script {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .guides {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background-color: #ecfdf5;
+            padding: 12px 32px;
+            border-radius: 16px;
+            border: 1px dashed #a7f3d0;
+        }
+
+        .guide-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #065f46;
+        }
+
+        .guide-label {
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #047857;
+            background-color: #d1fae5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #a7f3d0;
+        }
+
+        .guide-text {
+            font-weight: 600;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Three Little Pigs Grow Big and Strong</h1>
+        <p class="cover-subtitle">An Interactive Toddler Storybook about Good Food</p>
+        <div class="cover-image-container">
+            <img src="../images/healthy_intro.png" alt="Healthy Three Little Pigs Cover">
+        </div>
+        <div class="cover-footer">Eating Healthy Makes Us Strong!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_intro.png" alt="Meet the Pigs">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Meet the three little pigs! They want to grow big and strong!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Point to the apple and carrot on the table</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Rub tummy: "Yum, yum, yum!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_broccoli.png" alt="Broccoli & Straw">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Look! This pig eats green broccoli. Crunch, crunch! Now he is strong!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Touch child's arm muscles: "So strong!"</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Crunch, crunch, crunch!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_apple.png" alt="Apples & Sticks">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"This pig eats a sweet red apple. Munch, munch! He is full of energy!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Reach hands up high like the apple tree</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Munch, munch, munch!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_soup.png" alt="Third Pig eating carrot soup">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"This pig eats warm carrot soup. Slurp, slurp! He is super strong!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to hold a bowl and blow to cool it down</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Sluuuuurp!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_wolf_arrives.png" alt="Goofy Wolf Arrives">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Oh look! The big grey wolf walks up. He is hungry!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Make a surprised face and point to the wolf's tail</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Funny howl: "Awooooo!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_wolf_blows.png" alt="Wolf Blows Brick House">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The wolf blows... HUFF and PUFF! But the brick house is too strong!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Blow a gentle puff of air at toddler's hand</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Deep breath and blow: "Fuuuuuuh!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_door.png" alt="Pigs Hold Door Shut">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The pigs push the door shut. Push, push! They are so strong!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Push hands gently against toddler's hands</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Grunt of effort: "Ugh, ugh! Strong!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_tired_wolf.png" alt="Tired Wolf Sits Outside">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The wolf is tired. He sits down. Bye-bye, wolf!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Wave goodbye: "Bye-bye, wolf!"</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Yawn loudly: "Ahhh, so tired!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+    <!-- Page 9 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/healthy_feast.png" alt="Pigs Eating Healthy Dinner">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Yay! The pigs eat a big yummy dinner. We love good food!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Clap hands and cheer together</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Hooray! Yay!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 9</div>
+    </div>
+
+</body>
+</html>
