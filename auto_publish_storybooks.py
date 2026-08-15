@@ -67,7 +67,7 @@ def run_local_storybook_sync():
     print("[Local Sync] Starting local storybook auto-publishing scan...")
     source_dir = "/Users/kanchigupta/Desktop/AI_PROJECTS/kids storybooks/publish_ready"
     project_root = "/Users/kanchigupta/Desktop/AI_PROJECTS/handhold"
-    dest_dir = os.path.join(project_root, "notes/storybooks")
+    dest_dir = os.path.join(project_root, "notes") # Point directly to notes/ directory
     kids_html_path = os.path.join(project_root, "kids-corner.html")
 
     if not os.path.exists(source_dir):
@@ -76,11 +76,10 @@ def run_local_storybook_sync():
 
     os.makedirs(dest_dir, exist_ok=True)
 
-    # C: SCAN AND SYNC IMAGES/ILLUSTRATIONS
+    # C: SCAN AND SYNC IMAGES/ILLUSTRATIONS DIRECTLY TO NOTES/ FOLDER
     source_images_dir = "/Users/kanchigupta/Desktop/AI_PROJECTS/kids storybooks/images"
-    dest_images_dir = os.path.join(project_root, "notes/images")
+    dest_images_dir = os.path.join(project_root, "notes")
     if os.path.exists(source_images_dir):
-        os.makedirs(dest_images_dir, exist_ok=True)
         for img in os.listdir(source_images_dir):
             if img.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp')):
                 src_img_path = os.path.join(source_images_dir, img)
@@ -113,9 +112,9 @@ def run_local_storybook_sync():
 
         # 1. Copy the PDF file to her public website notes folder
         shutil.copy(pdf_source_path, pdf_dest_path)
-        print(f"            Copied PDF to public path: notes/storybooks/{pdf_public_name}")
+        print(f"            Copied PDF to public path: notes/{pdf_public_name}")
 
-        # 2. Check and copy matching HTML file if exists
+        # 2. Check and copy matching HTML file if exists, stripping relative ../images/ paths
         html_public_name = f"Master_{slug}_Storybook.html"
         html_dest_path = os.path.join(dest_dir, html_public_name)
         html_source_name = pdf.replace(".pdf", ".html")
@@ -123,8 +122,13 @@ def run_local_storybook_sync():
         
         has_html = False
         if os.path.exists(html_source_path):
-            shutil.copy(html_source_path, html_dest_path)
-            print(f"            Copied HTML to public path: notes/storybooks/{html_public_name}")
+            with open(html_source_path, 'r', encoding='utf-8') as file:
+                html_body = file.read()
+            # Strip relative paths so images sit in the same notes/ folder cleanly!
+            html_body_updated = html_body.replace("../images/", "")
+            with open(html_dest_path, 'w', encoding='utf-8') as file:
+                file.write(html_body_updated)
+            print(f"            Copied and processed HTML to public path: notes/{html_public_name}")
             has_html = True
 
         # 3. Ingest the book metadata in her HTML database list
@@ -133,10 +137,10 @@ def run_local_storybook_sync():
             "title": title,
             "desc": desc,
             "icon": icon,
-            "pdfUrl": f"notes/storybooks/{pdf_public_name}"
+            "pdfUrl": f"notes/{pdf_public_name}"
         }
         if has_html:
-            new_book_obj["htmlUrl"] = f"notes/storybooks/{html_public_name}"
+            new_book_obj["htmlUrl"] = f"notes/{html_public_name}"
             
         new_book_obj["pages"] = [
             {
@@ -169,7 +173,7 @@ def run_local_storybook_sync():
         try:
             print("[Local Sync] Running git push to deploy changes live...")
             subprocess.run(["git", "add", "."], cwd=project_root, check=True)
-            subprocess.run(["git", "commit", "-m", "chore(kids): autonomously index and publish newly discovered local storybook PDFs"], cwd=project_root, check=True)
+            subprocess.run(["git", "commit", "-m", "chore(kids): autonomously index and publish newly discovered local storybook PDFs and HTMLs"], cwd=project_root, check=True)
             subprocess.run(["git", "pull", "origin", "main", "--rebase"], cwd=project_root, check=True)
             subprocess.run(["git", "push", "origin", "main"], cwd=project_root, check=True)
             print("[Local Sync] SUCCESS! New storybooks deployed to production automatically!")

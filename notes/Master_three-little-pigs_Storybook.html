@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Three Little Pigs - A Toddler Interactive Storybook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #fcfbf7;
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 54px;
+            font-weight: 800;
+            color: #b45309;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #d97706;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 8px solid #ffffff;
+        }
+
+        .cover-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #78350f;
+            background-color: #fef3c7;
+            padding: 8px 24px;
+            border-radius: 9999px;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 65vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+
+        .parent-script {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .guides {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background-color: #f1f5f9;
+            padding: 12px 32px;
+            border-radius: 16px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .guide-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        .guide-label {
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #d97706;
+            background-color: #fffbeb;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #fef3c7;
+        }
+
+        .guide-text {
+            font-weight: 600;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">The Three Little Pigs</h1>
+        <p class="cover-subtitle">An Interactive Toddler Storybook</p>
+        <div class="cover-image-container">
+            <img src="../images/meet_the_pigs.png" alt="Three Little Pigs Cover">
+        </div>
+        <div class="cover-footer">An Interactive Guide for Parents & Toddlers</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/meet_the_pigs.png" alt="Meet the Pigs">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Look! Three happy little pigs! One, two, three!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Point to each pig and count together</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Oink, oink, oink!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/building_with_straw.png" alt="Building Straw House">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"This pig is building a house. It is made of yellow straw!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Tap the yellow straw on the page</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Swish, swish, swish!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/building_with_sticks.png" alt="Building Stick House">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"This pig is building a house. It is made of wooden sticks!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Point to the tree branches and sticks</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Tap on table: "Tap, tap, tap!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/building_with_bricks.png" alt="Building Brick House">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"This pig is building a strong house. It is made of red bricks!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Knock on the floor or table: "Is it strong?"</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Clink, clink, clink!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/goofy_wolf.png" alt="Goofy Wolf">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Oh look! A big grey wolf is walking here!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Touch the wolf's big black nose</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Playful growling: "Grrr..."</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/blowing_straw_house.png" alt="Wolf Blows Straw House">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The wolf goes... HUFF and PUFF! The straw house flies away!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Blow a gentle puff of air at their cheek</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Deep breath: "Fuuuuuuh! Whoosh!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/blowing_stick_house.png" alt="Wolf Blows Stick House">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The wolf blows again! HUFF and PUFF! The stick house falls down!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Wave hands together like flying sticks</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Fuuuuuuh! Crash!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/strong_brick_house.png" alt="Sturdy Brick House">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The wolf blows and blows. But the brick house is too strong!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Gently wiggle toddler: "No, no, no, it won't fall!"</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Exhausted wolf: "Phew! I'm tired!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+    <!-- Page 9 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wolf_in_chimney.png" alt="Wolf Chimney Escape">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The wolf climbs up. Ouch! The soup is hot! Go away, wolf!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to jump up surprised</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Sssss! Ouch!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 9</div>
+    </div>
+
+    <!-- Page 10 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/happy_pigs.png" alt="Pigs Dancing Happily">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Yay! The pigs are safe. They are dancing! Hooray!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Clap hands and do a little wiggle dance</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">Cheer: "Hooray! Yay!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 10</div>
+    </div>
+
+</body>
+</html>
