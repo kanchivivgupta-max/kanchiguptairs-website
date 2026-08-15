@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Goodnight, Barnaby Bear! - A Toddler Interactive Storybook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #f0f4f8; /* Soft midnight blue tinted background */
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); /* Deep night sky gradient */
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #93c5fd;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #1e3a8a;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            border: 1px solid #3b82f6;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 65vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Interactive Drawing/Paste Placeholder box */
+        .image-placeholder {
+            width: 65%;
+            height: 55vh;
+            border: 4px dashed #3b82f6;
+            border-radius: 24px;
+            background-color: #eff6ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            color: #1e3a8a;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+        }
+
+        .placeholder-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+        }
+
+        .placeholder-desc {
+            font-size: 13px;
+            font-weight: 600;
+            color: #3b82f6;
+            max-width: 480px;
+            line-height: 1.5;
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .placeholder-filename {
+            font-size: 12px;
+            font-weight: 800;
+            color: #1d4ed8;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+
+        .parent-script {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .guides {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background-color: #eff6ff;
+            padding: 12px 32px;
+            border-radius: 16px;
+            border: 1px dashed #bfdbfe;
+        }
+
+        .guide-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #1e3a8a;
+        }
+
+        .guide-label {
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #1d4ed8;
+            background-color: #dbeafe;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .guide-text {
+            font-weight: 600;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Goodnight, Barnaby Bear!</h1>
+        <p class="cover-subtitle">An Interactive Bedtime Storybook featuring Barnaby the Bear</p>
+        <div class="cover-image-container">
+            <img src="./images/bedtime_7.png" alt="Bedtime Cover">
+        </div>
+        <div class="cover-footer">Sleep tight, Barnaby Bear!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/bedtime_1.png" alt="Playtime Ends">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Playtime is over! The warm sun goes down. Bye-bye, sun!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Wave goodbye to the window or sky</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Yawn... Chime, chime!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/bedtime_2.png" alt="Splash Bath">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Splish, splash! Barnaby takes a warm bubble bath!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Gently tap the water on the page or splash fingers in the air</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Splash, splash! Squeak!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/bedtime_3.png" alt="Cozy Pajamas">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Put on the cozy yellow pajamas! Soft and warm!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Run your hand down the child's arm to mimic putting on sleeves</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Zip, zip! Snuggly!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/bedtime_4.png" alt="Brush Teeth">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Brush the teeth clean! Brush up and down. Sparkle!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Make a brushing motion on your teeth</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Swish, swish, swish!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/bedtime_5.png" alt="Book Time">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Choose a bedtime storybook. Point to the blue book!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Point to the blue book on the shelf</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Turn the page: rustle, rustle!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/bedtime_6.png" alt="Cozy Bed">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Climb into the cozy wooden bed. Crawl, crawl!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Walk two fingers slowly across the page to the bed</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Creep, creep! Hop!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/bedtime_7.png" alt="Tucked In snug">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Tuck under the soft blue blanket. Pat, pat! Warm and snug!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to pull a blanket up to the child's chin and pat it gently</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Sigh... Snuggle!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 (Placeholder) -->
+    <div class="page">
+        <div class="image-container">
+            <img src="bedtime_8.png" alt="Scene 8: Goodnight, Barnaby!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Goodnight, Barnaby Bear! Shh... close your eyes. Sleep tight!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Close your eyes and whisper "goodnight"</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Shh... Goodnight. Sleepy breathing."</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>
