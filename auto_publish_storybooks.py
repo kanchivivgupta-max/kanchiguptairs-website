@@ -126,9 +126,23 @@ def run_local_storybook_sync():
                 html_body = file.read()
             # Strip relative paths so images sit in the same notes/ folder cleanly!
             html_body_updated = html_body.replace("../images/", "")
+            
+            # Unwrap any image-placeholder divs into real img tags
+            placeholder_pattern = re.compile(
+                r'<div class="image-placeholder">.*?<div class="placeholder-title">(.*?)</div>.*?<div class="placeholder-filename">File:\s*(.*?)</div>.*?</div>',
+                re.DOTALL | re.IGNORECASE
+            )
+            def replacer(match):
+                title = match.group(1).strip()
+                filename_raw = match.group(2).strip()
+                filename = filename_raw.replace("images/", "").replace("../", "").strip().lower()
+                return f'<img src="{filename}" alt="{title}">'
+            
+            html_body_updated = placeholder_pattern.sub(replacer, html_body_updated)
+            
             with open(html_dest_path, 'w', encoding='utf-8') as file:
                 file.write(html_body_updated)
-            print(f"            Copied and processed HTML to public path: notes/{html_public_name}")
+            print(f"            Copied, processed and unwrapped HTML to public path: notes/{html_public_name}")
             has_html = True
 
         # 3. Ingest the book metadata in her HTML database list
