@@ -104,7 +104,7 @@ def run_local_storybook_sync():
         pdf_source_path = os.path.join(source_dir, pdf)
 
         # Check if already registered in kids-corner.html
-        if f'id: "{slug}"' in html_content or f'id: \'{slug}\'' in html_content:
+        if f'id: "{slug}"' in html_content or f'id: \'{slug}\'' in html_content or f'"id": "{slug}"' in html_content or f'"id": \'{slug}\'' in html_content:
             continue
 
         print(f"[Local Sync] Found NEW manual PDF storybook: {pdf}")
