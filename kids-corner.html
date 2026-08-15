@@ -443,6 +443,36 @@
       "desc": "An interactive, printable storybook designed for parents and toddlers to read and enjoy milestones together!",
       "icon": "📖",
       "pdfUrl": "notes/storybooks/Master_wash-hands_Storybook.pdf",
+      "htmlUrl": "notes/storybooks/Master_wash-hands_Storybook.html",
+      "pages": [
+            {
+                  "quote": "\"Look at the happy story about Wash Hands!\"",
+                  "action": "Read the printed pages together and follow the action prompts.",
+                  "sound": "\"Hooray, yum, zoom!\""
+            }
+      ]
+},
+      {
+      "id": "sharing",
+      "title": "Sharing",
+      "desc": "An interactive, printable storybook designed for parents and toddlers to read and enjoy milestones together!",
+      "icon": "🤝",
+      "pdfUrl": "notes/storybooks/Master_sharing_Storybook.pdf",
+      "htmlUrl": "notes/storybooks/Master_sharing_Storybook.html",
+      "pages": [
+            {
+                  "quote": "\"Look at the happy story about Sharing!\"",
+                  "action": "Read the printed pages together and follow the action prompts.",
+                  "sound": "\"Hooray, yum, zoom!\""
+            }
+      ]
+},
+      {
+      "id": "wash-hands",
+      "title": "Wash Hands",
+      "desc": "An interactive, printable storybook designed for parents and toddlers to read and enjoy milestones together!",
+      "icon": "📖",
+      "pdfUrl": "notes/storybooks/Master_wash-hands_Storybook.pdf",
       "pages": [
             {
                   "quote": "\"Look at the happy story about Wash Hands!\"",
@@ -584,13 +614,17 @@
         card.className = "book-card";
         card.style.cursor = "default";
         const pdfPath = book.pdfUrl || `notes/storybooks/Master_${book.id}_Storybook.pdf`;
+        const htmlPath = book.htmlUrl || `notes/storybooks/Master_${book.id}_Storybook.html`;
         card.innerHTML = `
           <div>
             <div class="book-icon">${book.icon}</div>
             <h3 class="book-title">${book.title}</h3>
             <p class="book-desc">${book.desc}</p>
           </div>
-          <a href="${pdfPath}" download class="book-btn" style="background: var(--accent); color: white; display: block; text-decoration: none; text-align: center;">Download Printable PDF 📥</a>
+          <div style="display: flex; gap: 0.75rem; margin-top: auto; width: 100%;">
+            <a href="${htmlPath}" target="_blank" class="book-btn" style="flex: 1; background: var(--blue); color: var(--text); text-decoration: none; text-align: center; font-size: 0.95rem; padding: 0.6rem 0.5rem; border-radius: 9999px; font-weight: 600;">Read Online 📖</a>
+            <a href="${pdfPath}" download class="book-btn" style="flex: 1; background: var(--accent); color: white; text-decoration: none; text-align: center; font-size: 0.95rem; padding: 0.6rem 0.5rem; border-radius: 9999px; font-weight: 600;">Download PDF 📥</a>
+          </div>
         `;
         container.appendChild(card);
       });

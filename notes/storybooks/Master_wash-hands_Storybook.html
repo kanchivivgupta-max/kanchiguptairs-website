@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Splish, Splash, Wash Your Hands! - A Toddler Interactive Storybook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #f6fbfd; /* Soft baby blue tinted background */
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); /* Bubbles/water gradient */
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #0369a1;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0284c7;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #075985;
+            background-color: #e0f2fe;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            border: 1px solid #bae6fd;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 65vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+
+        .parent-script {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .guides {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background-color: #ecfeff; /* Soft cyan bubble bg */
+            padding: 12px 32px;
+            border-radius: 16px;
+            border: 1px dashed #a5f3fc;
+        }
+
+        .guide-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #0891b2;
+        }
+
+        .guide-label {
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #0e7490;
+            background-color: #cffafe;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #a5f3fc;
+        }
+
+        .guide-text {
+            font-weight: 600;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Splish, Splash, Wash Your Hands!</h1>
+        <p class="cover-subtitle">An Interactive Toddler Storybook with Pip the Puppy</p>
+        <div class="cover-image-container">
+            <img src="../images/wash_hands_8.png" alt="Washing Hands Cover">
+        </div>
+        <div class="cover-footer">Washing Paws Keeps Pip Happy and Healthy!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_1.png" alt="Pip Playing in the Garden">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pip the puppy plays in the garden! Dig, dig, dig!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Tickle the child's hands or make a digging motion on the floor</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Scratch, scratch! Woof!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_2.png" alt="Dirty Paws">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Look at Pip's dirty paws! Uh-oh! Time to wash!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Show your own palms and shake your head</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Uh-oh! Dirty paws!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_3.png" alt="Step Up Stool">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Climb up the small step stool. Step, step! Up we go!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Walk two fingers up the child's arm like climbing stairs</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Stomp, stomp! Up!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_4.png" alt="Turn on Water">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Turn the silver faucet. Twist! The water runs. Splash!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to twist a knob and wiggle fingers down like running water</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Twist! Shhhhhh!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_5.png" alt="Pink Soap Pump">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Push the pink soap bottle. Pump, pump! Bubbly bubbles!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Tap the child's palm twice</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Squish, squish! Pop!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_6.png" alt="Scrub Paws">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Scrub your hands together! Rub, rub, rub! Wash them clean!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Rub hands together quickly and encourage the child to do the same</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Swish, swish, swish!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_7.png" alt="Rinse and Dry">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Wash the bubbles away! Now pat, pat with the soft towel."</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Pretend to wipe the child's hands with a soft towel</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Splish, splash! Pat, pat!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="../images/wash_hands_8.png" alt="Clean and Happy Paws">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"All clean! Hooray! Look at the happy paws. Clap, clap!"</p>
+            <div class="guides">
+                <div class="guide-box">
+                    <span class="guide-label">Action</span>
+                    <span class="guide-text">Give the child a high-five or clap hands together</span>
+                </div>
+                <div class="guide-box">
+                    <span class="guide-label">Sound</span>
+                    <span class="guide-text">"Yay! Clap, clap! Woof!"</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>

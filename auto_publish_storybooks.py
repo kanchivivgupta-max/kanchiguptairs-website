@@ -100,23 +100,38 @@ def run_local_storybook_sync():
 
         # 1. Copy the PDF file to her public website notes folder
         shutil.copy(pdf_source_path, pdf_dest_path)
-        print(f"            Copied to public path: notes/storybooks/{pdf_public_name}")
+        print(f"            Copied PDF to public path: notes/storybooks/{pdf_public_name}")
 
-        # 2. Ingest the book metadata in her HTML database list
+        # 2. Check and copy matching HTML file if exists
+        html_public_name = f"Master_{slug}_Storybook.html"
+        html_dest_path = os.path.join(dest_dir, html_public_name)
+        html_source_name = pdf.replace(".pdf", ".html")
+        html_source_path = os.path.join(source_dir, html_source_name)
+        
+        has_html = False
+        if os.path.exists(html_source_path):
+            shutil.copy(html_source_path, html_dest_path)
+            print(f"            Copied HTML to public path: notes/storybooks/{html_public_name}")
+            has_html = True
+
+        # 3. Ingest the book metadata in her HTML database list
         new_book_obj = {
             "id": slug,
             "title": title,
             "desc": desc,
             "icon": icon,
-            "pdfUrl": f"notes/storybooks/{pdf_public_name}",
-            "pages": [
-                {
-                    "quote": f"\"Look at the happy story about {title}!\"",
-                    "action": "Read the printed pages together and follow the action prompts.",
-                    "sound": "\"Hooray, yum, zoom!\""
-                }
-            ]
+            "pdfUrl": f"notes/storybooks/{pdf_public_name}"
         }
+        if has_html:
+            new_book_obj["htmlUrl"] = f"notes/storybooks/{html_public_name}"
+            
+        new_book_obj["pages"] = [
+            {
+                "quote": f"\"Look at the happy story about {title}!\"",
+                "action": "Read the printed pages together and follow the action prompts.",
+                "sound": "\"Hooray, yum, zoom!\""
+            }
+        ]
         
         # Inject into storybooks array inside kids-corner.html
         new_book_json = json.dumps(new_book_obj, indent=6, ensure_ascii=False)
