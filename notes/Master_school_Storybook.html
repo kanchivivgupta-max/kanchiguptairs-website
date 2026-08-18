@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spoo Goes to School - A Children's Picture Book</title>
+    <style>
+        @font-face {
+            font-family: 'Bubblegum Sans';
+            src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
+        }
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Bubblegum Sans', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #fffbeb; /* Soft cream/yellow background */
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); /* Yellow gradient */
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #b45309;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #d97706;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #78350f;
+            background-color: #fef3c7;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            border: 1px solid #fde68a;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 70vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+        }
+
+        .parent-script {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #d97706;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Spoo Goes to School</h1>
+        <p class="cover-subtitle">A Story of Friends, Fun, and Playtime</p>
+        <div class="cover-image-container">
+            <img src="./images/school_5.png" alt="Spoo Goes to School Cover">
+        </div>
+        <div class="cover-footer">Meeting Teachers, Friends, and Singing Songs!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_1.png" alt="Ready for School!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Spoo puts on his bright blue backpack. Today is school day!"</p>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_2.png" alt="Bye-Bye, Home!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Bye-bye, home! Spoo waves his hand with a happy smile."</p>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_3.png" alt="Meeting the Teacher">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Hello, school! The friendly teacher waves at the door."</p>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_4.png" alt="Hello, Adhya!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Look! A friend! 'Hello, Adhya!' says Spoo."</p>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_5.png" alt="The Yellow Bus">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Spoo and Adhya play with a big, bright yellow toy bus. Vroom!"</p>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_6.png" alt="Wheels on the Bus!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Singing together! 'The wheels on the bus go round and round!'"</p>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_7.png" alt="Storytime!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Storytime! The teacher reads a big colorful picture book."</p>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/school_8.png" alt="Happy School Day!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"School is so much fun! Spoo cannot wait to come back!"</p>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>
