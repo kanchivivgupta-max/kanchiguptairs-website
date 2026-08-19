@@ -1,188 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kanchi Gupta · Professional Profile & Career Timeline (IRS, IES, IIT Bombay, VNIT)</title>
-  
-  <!-- SEO & Reputation Management Metadata -->
   <meta name="description" content="Official professional profile, career timeline, and administrative clearance overview of Joint Commissioner Kanchi Gupta (Indian Revenue Service - IRS).">
   <meta name="keywords" content="Kanchi Gupta, Kanchi Gupta IRS, Kanchi Gupta CBI, Kanchi Gupta CBI investigation, Kanchi Gupta clearance, Kanchi Gupta exoneration, Kanchi Gupta SEEPZ, Specified Officer, Central Power Engineering, IIT Bombay, VNIT Nagpur, Electrical Engineering, Bhagavad Gita, Badminton, Squash">
-  <meta name="author" content="Kanchi Gupta">
-  
-  <!-- Open Graph / Social Media Metadata -->
   <meta property="og:title" content="Kanchi Gupta · Professional Profile & Career Timeline">
   <meta property="og:description" content="Official career timeline, academic credentials, and personal philosophy of Kanchi Gupta, Indian Revenue Service (IRS) officer.">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="profile">
   <meta property="og:url" content="https://kanchiguptairs.com/about.html">
-  <meta property="og:site_name" content="Kanchi Gupta Personal Hub">
+  <link rel="stylesheet" href="styles.css?v=1.3">
   
-  <!-- Structured Data / JSON-LD for Search Engine Knowledge Cards -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Kanchi Gupta",
-    "url": "https://kanchiguptairs.com/about.html",
     "jobTitle": "Joint Commissioner, Indian Revenue Service (IRS)",
+    "worksFor": {
+      "@type": "GovernmentOrganization",
+      "name": "Central Board of Indirect Taxes and Customs (CBIC), Government of India"
+    },
     "alumniOf": [
       {
-        "@type": "EducationalOrganization",
+        "@type": "CollegeOrUniversity",
         "name": "Visvesvaraya National Institute of Technology (VNIT) Nagpur"
       },
       {
-        "@type": "EducationalOrganization",
-        "name": "Indian Institute of Technology (IIT) Bombay"
-      },
-      {
-        "@type": "EducationalOrganization",
+        "@type": "CollegeOrUniversity",
         "name": "Government Law College (GLC), Mumbai"
       }
     ],
-    "description": "Kanchi Gupta is an Indian Revenue Service (IRS) officer, electrical engineer, and legal professional specializing in technology, public administration, indirect taxation, and advanced AI workflows.",
+    "url": "https://kanchiguptairs.com/about.html",
     "sameAs": [
-      "https://github.com/kanchiguptairs",
-      "https://x.com/gupta_kanchi"
-    ]
+      "https://www.linkedin.com/in/kanchiguptairs/",
+      "https://twitter.com/kanchiguptairs",
+      "https://www.facebook.com/kanchinvincible",
+      "https://medium.com/@kanchivivgupta",
+      "https://kanchivivgupta.substack.com"
+    ],
+    "description": "Kanchi Gupta is an Indian Revenue Service (IRS) officer, electrical engineer, and legal professional specializing in technology, public administration, indirect taxation, and advanced AI workflows."
   }
   </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .profile-container {
-      max-width: 800px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
-    .profile-header {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 2rem;
-    }
-    .profile-header h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: var(--hero-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-    .profile-header .subtitle {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .timeline {
-      position: relative;
-      margin: 3rem 0;
-      padding-left: 2rem;
-      border-left: 2px solid var(--card-border);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2.5rem;
-    }
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -2.4rem;
-      top: 0.35rem;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 3px solid var(--bg);
-    }
-    .timeline-date {
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    .timeline-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .timeline-desc {
-      color: var(--muted);
-      font-size: 0.975rem;
-      line-height: 1.6;
-    }
-    .competency-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .competency-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 1.5rem;
-    }
-    .competency-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-    .competency-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-    .personal-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 1.5rem;
-    }
-    .personal-list li {
-      margin-bottom: 1rem;
-      padding-left: 1.5rem;
-      position: relative;
-      color: var(--muted);
-      font-size: 0.975rem;
-    }
-    .personal-list li::before {
-      content: "✦";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-  </style>
 </head>
 <body>
-
-  <!-- Ambient background 3D nodes canvas and glow orbs -->
-  <canvas id="nodes-canvas"></canvas>
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-
-  <!-- Top navigation bar -->
-  <header class="nav">
-    <span class="nav-name">Kanchi Gupta</span>
-    <nav class="nav-links">
+  <header>
+    <nav>
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="kids-corner.html?v=1.2">Kids' Corner</a>
+      <a href="about.html" class="active">About</a>
       <a href="index.html#resources">Notes</a>
       <a href="index.html#contact">Contact</a>
-      <button id="theme-toggle" aria-label="Switch theme">☀️</button>
+      <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
     </nav>
   </header>
 
-  <main class="profile-container">
-    <section class="profile-header">
-      <p class="subtitle">Official Profile</p>
-      <h1>Kanchi Gupta</h1>
+  <main class="container">
+    <section class="hero" style="padding-top: 2rem; padding-bottom: 2rem;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Professional Profile</h1>
       <p class="timeline-desc" style="font-size: 1.1rem;">
         Joint Commissioner of the Indian Revenue Service (IRS), Electrical Engineer, and Legal Professional specializing in technology, public policy, and structured system design.
       </p>
@@ -193,17 +68,17 @@
       <h2>Professional Timeline & Achievements</h2>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timeline-date">2016 Batch · IRS (CBIC)</div>
-          <div class="timeline-title">National Academy of Customs, Indirect Taxes and Narcotics (NACIN)</div>
+          <div class="timeline-date">January 2026 - Present</div>
+          <div class="timeline-title">Joint Commissioner | Chennai CGST Audit</div>
           <div class="timeline-desc">
-            Inducted into the 2016 batch of the Indian Revenue Service (IRS - Customs & Indirect Taxes) following the Civil Services Examination. Underwent intensive foundational and professional civil service training at the <a href="https://www.nacin.gov.in/Batch_68th.html" target="_blank" rel="noopener">National Academy of Customs, Indirect Taxes and Narcotics (NACIN)</a> as part of the 68th Batch.
+            Promoted to Joint Commissioner on <strong>January 1, 2026</strong>. Managing commissionerate-level tax compliance audits, policy oversight, dispute resolution, and public revenue facilitation under the Central GST & Customs framework in the Chennai CGST Audit Commissionerate.
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-date">July 2022 - January 2026</div>
           <div class="timeline-title">Deputy Commissioner of Customs | Mumbai Customs Zone III</div>
           <div class="timeline-desc">
-            Currently holding the charge of the <strong>Central Intelligence Unit (CIU)</strong>, Vigilance, Disposal, and Unaccompanied Baggage at the Sahar Air Cargo Complex, Mumbai. Leading high-impact vigilance operations, identifying systemic customs procedure loopholes, and coordinating successful detections totaling Rs. 30 Crore and recoveries of Rs. 11 Crore in indirect tax compliance and fraudulent IGST claims.
+            Held the charge of the <strong>Central Intelligence Unit (CIU)</strong>, Vigilance, Disposal, and Unaccompanied Baggage at the Sahar Air Cargo Complex, Mumbai. Leading high-impact vigilance operations, identifying systemic customs procedure loopholes, and coordinating successful detections totaling Rs. 30 Crore and recoveries of Rs. 11 Crore in indirect tax compliance and fraudulent IGST claims.
           </div>
         </div>
         <div class="timeline-item">
@@ -230,6 +105,13 @@
           <div class="timeline-title">Assistant Commissioner | CGST & Central Excise, Mumbai</div>
           <div class="timeline-desc">
             Administered divisional tax compliance and public revenue collections at Thane CGST & Central Excise. Spearheaded highly successful promotional and public outreach campaigns for the national *Sabka Vishwas Legacy Dispute Resolution Scheme (SVLDRS) 2019*, coordinating prominent informational events at the Bombay Stock Exchange (BSE) and organizing flash mobs at CSMT.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2016 Batch · IRS (CBIC)</div>
+          <div class="timeline-title">National Academy of Customs, Indirect Taxes and Narcotics (NACIN)</div>
+          <div class="timeline-desc">
+            Inducted into the 2016 batch of the Indian Revenue Service (IRS - Customs & Indirect Taxes) following the Civil Services Examination. Underwent intensive foundational and professional civil service training at the <a href="https://www.nacin.gov.in/Batch_68th.html" target="_blank" rel="noopener">National Academy of Customs, Indirect Taxes and Narcotics (NACIN)</a> as part of the 68th Batch.
           </div>
         </div>
         <div class="timeline-item">
@@ -267,36 +149,29 @@
       </p>
       <div class="competency-grid" style="margin-bottom: 3rem;">
         <div class="competency-card">
-          <h3>Public Sector Administration</h3>
-          <p>Navigating UPSC frameworks, central services regulation, inter-departmental policy design, and infrastructure planning.</p>
+          <h3>Indirect Taxation & Audit</h3>
+          <p>Comprehensive oversight of GST compliance, customs clearance procedures, preventive vigilance, and risk-selective documentation auditing.</p>
         </div>
         <div class="competency-card">
-          <h3>Indirect Taxation & Customs</h3>
-          <p>Analyzing compliance audits, statutory interpretations, trade facilitation measures, and international border regulations.</p>
+          <h3>Legal & Statutory Analysis</h3>
+          <p>Rigorous statutory interpretation and compliance frameworks cultivated through academic distinction at Government Law College, Mumbai.</p>
         </div>
         <div class="competency-card">
-          <h3>Administrative Law</h3>
-          <p>Leveraging an LL.B. background to draft administrative directives, adjudicate quasi-judicial cases, and interpret trade legislation.</p>
-        </div>
-        <div class="competency-card">
-          <h3>Agentic Engineering</h3>
-          <p>Experimenting with advanced local workflows (Ollama, DeepSeek R1, Qwen) and compiling structural system design notes.</p>
+          <h3>Systems Architecture</h3>
+          <p>Designing robust digital workflows, automated pipelines, and systematic data models inspired by core electrical engineering principles.</p>
         </div>
       </div>
     </section>
 
-    <!-- Personal Section -->
-    <section style="margin-top: 4rem; border-top: 1px solid var(--card-border); padding-top: 3rem;">
-      <h2>Personal Philosophy & Interests</h2>
-      <p class="timeline-desc">
-        Beyond public administration and technology, I believe in maintaining a balanced, multi-dimensional life grounded in physical health, lifelong learning, and deep spiritual values.
-      </p>
-      <ul class="personal-list">
+    <!-- Personal Philosophy & Interests -->
+    <section style="margin-top: 3rem;">
+      <h2>Personal Philosophy & Principles</h2>
+      <ul style="list-style: disc; padding-left: 1.5rem; margin-top: 1rem; color: var(--muted); line-height: 1.8;">
         <li>
-          <strong>Racquet Sports & Fitness:</strong> I am a highly active athletic person and enjoy playing racquet sports to stay fit. My primary athletic pursuits include playing <strong>badminton, squash, table tennis, and lawn tennis</strong>, alongside regular <strong>swimming</strong> sessions.
+          <strong>Karma Yoga & Public Duty:</strong> Guided by the philosophy of detached, dedicated action—focusing entirely on executing duties with integrity and excellence while remaining unattached to fleeting external outcomes.
         </li>
         <li>
-          <strong>Spirituality & Wisdom:</strong> I have a deep interest in ancient wisdom and spirituality. I am a keen, dedicated follower of the <strong>Bhagavad Gita</strong>, actively applying its eternal principles of <em>Karma Yoga</em> (focused, selfless action) and mindfulness to my work in public service.
+          <strong>Discipline & Focus:</strong> Maintaining rigorous mental and physical balance through disciplined habits, squash, badminton, and continuous intellectual inquiry.
         </li>
         <li>
           <strong>Lifelong Learning:</strong> I have a profound belief that one should never stop growing. I am an avid self-educator, regularly taking online courses and technical tutorials to keep myself upgraded with new skills, technical frameworks, and logical paradigms.
