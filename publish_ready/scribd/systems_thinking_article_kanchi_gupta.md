@@ -42,8 +42,8 @@ Ultimately, the future of public revenue administration belongs to institutions 
 
 To connect across official and verified profiles, explore the network of primary digital touchpoints:
 - **Official Website:** [kanchiguptairs.com](https://kanchiguptairs.com)
-- **Verified LinkedIn Profile:** [Verified Profile](https://www.linkedin.com/in/kanchiguptairs)
-- **Professional Substack:** [Kanchi's Substack](https://kanchivivgupta.substack.com)
+- **Verified LinkedIn Profile:** [Kanchi Gupta on LinkedIn](https://www.linkedin.com/in/kanchiguptairs/)
+- **Professional Substack:** [Kanchi's Substack](https://kanchivivgupta.substack.com/)
 
 ---
 *Published autonomously as part of Kanchi Gupta's verified professional content syndication network.*
