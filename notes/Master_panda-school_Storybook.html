@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pop the Panda Plays at School - A Children's Picture Book</title>
+    <style>
+        @font-face {
+            font-family: 'Bubblegum Sans';
+            src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
+        }
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Bubblegum Sans', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #faf5ff; /* Soft lavender/purple background */
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); /* Lavender gradient */
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #6b21a8;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #8b5cf6;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #4c1d95;
+            background-color: #f3e8ff;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            border: 1px solid #e9d5ff;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 70vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+        }
+
+        .parent-script {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #8b5cf6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Pop the Panda Plays at School</h1>
+        <p class="cover-subtitle">A Playtime Adventure in the Ball Pit!</p>
+        <div class="cover-image-container">
+            <img src="./images/panda_school_5.png" alt="Pop the Panda plays at school">
+        </div>
+        <div class="cover-footer">Panda goes to school, meets teacher, and plays with friends!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_1.png" alt="Pop Packs His Bag">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop the little panda packs his bag. Time for school!"</p>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_2.png" alt="Hello, Teacher!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Hello, teacher! Pop waves his soft panda paw."</p>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_3.png" alt="The Big Playroom">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Look at the big playroom! Toys are everywhere!"</p>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_4.png" alt="The Ball Pit!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop finds the ball pit! So many colorful balls!"</p>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_5.png" alt="Whee, Splash!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Whee! Pop jumps into the soft ball pit! Splash!"</p>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_6.png" alt="Hello, Friend!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"A friend joins in! 'Hello!' says Pop."</p>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_7.png" alt="Roll the Balls">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Tossing the balls! Roll, roll, roll!"</p>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="./images/panda_school_8.png" alt="Friends Together">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Playing together is fun! Pop loves school!"</p>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>
