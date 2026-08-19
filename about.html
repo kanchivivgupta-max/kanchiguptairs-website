@@ -10,7 +10,65 @@
   <meta property="og:description" content="Official career timeline, academic credentials, and personal philosophy of Kanchi Gupta, Indian Revenue Service (IRS) officer.">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://kanchiguptairs.com/about.html">
-  <link rel="stylesheet" href="styles.css?v=1.3">
+  <link rel="stylesheet" href="styles.css?v=1.4">
+  <style>
+    /* Clean professional timeline styling */
+    .timeline-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid var(--card-border);
+    }
+    .timeline-card {
+      position: relative;
+      margin-bottom: 2.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .timeline-card:hover {
+      border-color: rgba(var(--accent-rgb), 0.4);
+      transform: translateY(-2px);
+    }
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 1.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg, #0f0f0f);
+    }
+    .timeline-card-date {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: rgba(var(--accent-rgb), 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .timeline-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .timeline-card p, .timeline-card li {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  </style>
   
   <script type="application/ld+json">
   {
@@ -58,7 +116,7 @@
   <main class="container">
     <section class="hero" style="padding-top: 2rem; padding-bottom: 2rem;">
       <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Professional Profile</h1>
-      <p class="timeline-desc" style="font-size: 1.1rem;">
+      <p class="timeline-desc" style="font-size: 1.1rem; color: var(--muted); text-align: center;">
         Joint Commissioner of the Indian Revenue Service (IRS), Electrical Engineer, and Legal Professional specializing in technology, public policy, and structured system design.
       </p>
     </section>
@@ -66,97 +124,103 @@
     <!-- Professional Timeline -->
     <section>
       <h2>Professional Timeline & Achievements</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">January 2026 - Present</div>
-          <div class="timeline-title">Joint Commissioner | Chennai CGST Audit</div>
-          <div class="timeline-desc">
+      <div class="timeline-container">
+        
+        <div class="timeline-card">
+          <span class="timeline-card-date">January 2026 - Present</span>
+          <h3>Joint Commissioner | Chennai CGST Audit</h3>
+          <p>
             Promoted to Joint Commissioner on <strong>January 1, 2026</strong>. Managing commissionerate-level tax compliance audits, policy oversight, dispute resolution, and public revenue facilitation under the Central GST & Customs framework in the Chennai CGST Audit Commissionerate.
-          </div>
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">July 2022 - January 2026</div>
-          <div class="timeline-title">Deputy Commissioner of Customs | Mumbai Customs Zone III</div>
-          <div class="timeline-desc">
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">July 2022 - January 2026</span>
+          <h3>Deputy Commissioner of Customs | Mumbai Customs Zone III</h3>
+          <p>
             Held the charge of the <strong>Central Intelligence Unit (CIU)</strong>, Vigilance, Disposal, and Unaccompanied Baggage at the Sahar Air Cargo Complex, Mumbai. Leading high-impact vigilance operations, identifying systemic customs procedure loopholes, and coordinating successful detections totaling Rs. 30 Crore and recoveries of Rs. 11 Crore in indirect tax compliance and fraudulent IGST claims.
-          </div>
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">January 2021 - June 2022</div>
-          <div class="timeline-title">Deputy Commissioner of Customs | Mumbai Customs Zone II</div>
-          <div class="timeline-desc">
-            Held diverse critical charges at Nhava Sheva Docks and Port:
-            <ul style="list-style: circle; padding-left: 1.5rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.95rem;">
-              <li><strong>Import & Export Examination:</strong> Served as DC Docks-Cluster-A, managing structural dock operations and trade compliance verifications.</li>
-              <li><strong>Audits & FTWZ Compliance:</strong> Held charge of Circle Audits and audit operations of the Arshiya Free Trade Warehousing Zone (including a brief, routine field administrative charge as Specified Officer at SEEPZ SEZ). Formulated and implemented pioneering risk-selective documentation audit methodologies under Rule 79 of SEZ Rules.</li>
-              <li><strong>Port & Faceless Assessment:</strong> Directed Port and Faceless Assessment operations for Appraising Group 3 (Chapters 50-71) and spearheaded the Turant Suvidha Kendra for advanced digital trade facilitation.</li>
-            </ul>
-          </div>
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">January 2021 - June 2022</span>
+          <h3>Deputy Commissioner of Customs | Mumbai Customs Zone II</h3>
+          <p>Held diverse critical charges at Nhava Sheva Docks and Port:</p>
+          <ul style="list-style: circle; padding-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>Import & Export Examination:</strong> Served as DC Docks-Cluster-A, managing structural dock operations and trade compliance verifications.</li>
+            <li><strong>Audits & FTWZ Compliance:</strong> Held charge of Circle Audits and audit operations of the Arshiya Free Trade Warehousing Zone (including a brief, routine field administrative charge as Specified Officer at SEEPZ SEZ). Formulated and implemented pioneering risk-selective documentation audit methodologies under Rule 79 of SEZ Rules.</li>
+            <li><strong>Port & Faceless Assessment:</strong> Directed Port and Faceless Assessment operations for Appraising Group 3 (Chapters 50-71) and spearheaded the Turant Suvidha Kendra for advanced digital trade facilitation.</li>
+          </ul>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">December 2020 - January 2021</div>
-          <div class="timeline-title">Assistant Commissioner of Customs | Mumbai Customs Zone II</div>
-          <div class="timeline-desc">
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">December 2020 - January 2021</span>
+          <h3>Assistant Commissioner of Customs | Mumbai Customs Zone II</h3>
+          <p>
             Directed the Appraising Group 3 (Chapters 50-71) at Nhava Sheva and supervised operations of the Turant Suvidha Kendra to facilitate smooth, digital-first faceless customs assessments.
-          </div>
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">May 2018 - December 2020</div>
-          <div class="timeline-title">Assistant Commissioner | CGST & Central Excise, Mumbai</div>
-          <div class="timeline-desc">
-            Administered divisional tax compliance and public revenue collections at Thane CGST & Central Excise. Spearheaded highly successful promotional and public outreach campaigns for the national *Sabka Vishwas Legacy Dispute Resolution Scheme (SVLDRS) 2019*, coordinating prominent informational events at the Bombay Stock Exchange (BSE) and organizing flash mobs at CSMT.
-          </div>
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">May 2018 - December 2020</span>
+          <h3>Assistant Commissioner | CGST & Central Excise, Mumbai</h3>
+          <p>
+            Administered divisional tax compliance and public revenue collections at Thane CGST & Central Excise. Spearheaded highly successful promotional and public outreach campaigns for the national <em>Sabka Vishwas Legacy Dispute Resolution Scheme (SVLDRS) 2019</em>, coordinating prominent informational events at the Bombay Stock Exchange (BSE) and organizing flash mobs at CSMT.
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2016 Batch · IRS (CBIC)</div>
-          <div class="timeline-title">National Academy of Customs, Indirect Taxes and Narcotics (NACIN)</div>
-          <div class="timeline-desc">
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">2016 Batch · IRS (CBIC)</span>
+          <h3>National Academy of Customs, Indirect Taxes and Narcotics (NACIN)</h3>
+          <p>
             Inducted into the 2016 batch of the Indian Revenue Service (IRS - Customs & Indirect Taxes) following the Civil Services Examination. Underwent intensive foundational and professional civil service training at the <a href="https://www.nacin.gov.in/Batch_68th.html" target="_blank" rel="noopener">National Academy of Customs, Indirect Taxes and Narcotics (NACIN)</a> as part of the 68th Batch.
-          </div>
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Academic Specialization</div>
-          <div class="timeline-title">LL.B. (Bachelor of Laws) · Government Law College (GLC), Mumbai</div>
-          <div class="timeline-desc">
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">Academic Specialization</span>
+          <h3>LL.B. (Bachelor of Laws) · Government Law College (GLC), Mumbai</h3>
+          <p>
             Completed professional legal studies (Batch of 2020–2023) at Asia's oldest and most prestigious law school, Government Law College, Mumbai, after securing <strong>7th Rank</strong> in the Maharashtra State Law Common Eligibility Test (MH-CET Law) 2020. Focus on statutory interpretation, constitutional law, and administrative compliance.
-          </div>
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">February 2015 - August 2016</div>
-          <div class="timeline-title">Assistant Director | Central Electricity Authority, Ministry of Power</div>
-          <div class="timeline-desc">
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">February 2015 - August 2016</span>
+          <h3>Assistant Director | Central Electricity Authority, Ministry of Power</h3>
+          <p>
             Successfully cleared the Indian Engineering Services (IES) Examination conducted by the UPSC (securing <strong>Rank 36</strong>). Served as Assistant Director (Protection) at the Western Regional Power Committee, Mumbai. Monitored, audited, and maintained protection and stability operations for the National Electricity Grid (Western Grid) covering Maharashtra, Gujarat, Madhya Pradesh, Chhattisgarh, and Goa.
-          </div>
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Academic Foundations</div>
-          <div class="timeline-title">IIT Bombay & VNIT Nagpur</div>
-          <div class="timeline-desc">
-            <ul style="list-style: circle; padding-left: 1.5rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.95rem;">
-              <li><strong>IIT Bombay (2013-2014):</strong> Pursued postgraduate studies (Master of Technology) focusing on technology, state development, and public policy designs.</li>
-              <li><strong>VNIT Nagpur (2013):</strong> Graduated with a B.Tech in Electrical and Electronics Engineering (CGPA of 8.0/10) with custom research on Control Systems Analytics. Served as General Secretary for Sports Affairs.</li>
-            </ul>
-          </div>
+
+        <div class="timeline-card">
+          <span class="timeline-card-date">Academic Foundations</span>
+          <h3>IIT Bombay & VNIT Nagpur</h3>
+          <ul style="list-style: circle; padding-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>IIT Bombay (2013-2014):</strong> Pursued postgraduate studies (Master of Technology) focusing on technology, state development, and public policy designs.</li>
+            <li><strong>VNIT Nagpur (2013):</strong> Graduated with a B.Tech in Electrical and Electronics Engineering (CGPA of 8.0/10) with custom research on Control Systems Analytics. Served as General Secretary for Sports Affairs.</li>
+          </ul>
         </div>
+
       </div>
     </section>
 
     <!-- Areas of Competency -->
     <section style="margin-top: 4rem;">
       <h2>Professional Competencies</h2>
-      <p class="timeline-desc" style="margin-bottom: 2rem;">
+      <p class="section-subtitle" style="margin-bottom: 2rem;">
         Applying engineering-level precision and statutory legal structures to public service administration and modern technological environments.
       </p>
-      <div class="competency-grid" style="margin-bottom: 3rem;">
-        <div class="competency-card">
+      <div class="project-grid" style="margin-bottom: 3rem;">
+        <div class="project-card">
           <h3>Indirect Taxation & Audit</h3>
           <p>Comprehensive oversight of GST compliance, customs clearance procedures, preventive vigilance, and risk-selective documentation auditing.</p>
         </div>
-        <div class="competency-card">
+        <div class="project-card">
           <h3>Legal & Statutory Analysis</h3>
           <p>Rigorous statutory interpretation and compliance frameworks cultivated through academic distinction at Government Law College, Mumbai.</p>
         </div>
-        <div class="competency-card">
+        <div class="project-card">
           <h3>Systems Architecture</h3>
           <p>Designing robust digital workflows, automated pipelines, and systematic data models inspired by core electrical engineering principles.</p>
         </div>
