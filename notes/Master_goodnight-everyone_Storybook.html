@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Goodnight, Everyone! - A Children's Bedtime Picture Book</title>
+    <style>
+        @font-face {
+            font-family: 'Bubblegum Sans';
+            src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
+        }
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Bubblegum Sans', sans-serif;
+            background-color: #0f172a; /* Midnight slate background */
+            color: #f1f5f9;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #0f172a; 
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); /* Midnight purple gradient */
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fde047; /* Glowing yellow */
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(253, 224, 71, 0.2);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #a78bfa;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #1e293b;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #c084fc;
+            background-color: #1e1b4b;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            border: 1px solid #312e81;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 70vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #1e293b;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+        }
+
+        .parent-script {
+            font-size: 36px;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 0;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Goodnight, Everyone!</h1>
+        <p class="cover-subtitle">A Sweet Sleepy Story for Daivik, Kavish, and Spoo</p>
+        <div class="cover-image-container">
+            <img src="goodnight_8.png" alt="Goodnight, Everyone! Cover">
+        </div>
+        <div class="cover-footer">Shh... it is time to close your eyes and sleep tight!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_1.png" alt="Bedtime for the Boys!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Daivik, Kavish, and little Spoo crawl into their warm beds. Shh... it is sleeping time!"</p>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_2.png" alt="Grandpa and Grandma Sleep">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Grandpa is asleep. Grandma is asleep. They are dreaming sweet dreams."</p>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_3.png" alt="Masi is Asleep">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Masi is asleep. Her eyes are closed. Sleep tight, Masi!"</p>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_4.png" alt="Panda and Puppy Sleep">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop the Panda is asleep. Pip the Puppy is asleep. Snuggle, snuggle!"</p>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_5.png" alt="Wolf and Sheep Sleep">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The big wolf is asleep. The little sheep is asleep. Safe and warm."</p>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_6.png" alt="Astronaut Sleeps">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"The brave astronaut is asleep, floating among the twinkling stars."</p>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_7.png" alt="Butterfly and Caterpillar Sleep">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Bella the Butterfly is asleep. The little toy caterpillar is asleep. Sweet dreams!"</p>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="goodnight_8.png" alt="Goodnight, Everyone!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Everyone is asleep! Goodnight, Daivik! Goodnight, Kavish! Goodnight, Spoo!"</p>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>
