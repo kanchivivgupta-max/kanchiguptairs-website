@@ -125,7 +125,7 @@ def run_local_storybook_sync():
             with open(html_source_path, 'r', encoding='utf-8') as file:
                 html_body = file.read()
             # Strip relative paths so images sit in the same notes/ folder cleanly!
-            html_body_updated = html_body.replace("../images/", "")
+            html_body_updated = html_body.replace("../images/", "").replace("./images/", "")
             
             # Unwrap any image-placeholder divs into real img tags
             placeholder_pattern = re.compile(
