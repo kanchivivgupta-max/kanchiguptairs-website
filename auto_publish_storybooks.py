@@ -38,6 +38,8 @@ DESC_MAPPING = {
     "share": "A printable, interactive storybook teaching toddlers about sharing toys, taking turns, and the joy of cooperative play!",
     "potty": "A playful, encouraging printable storybook supporting parents and toddlers through potty training milestones with confidence!",
     "sleep": "A warm, gentle printable storybook designed to help toddlers settle down, follow bedtime routines, and fall asleep peacefully!",
+    "night": "A warm, gentle printable storybook designed to help toddlers settle down, follow bedtime routines, and fall asleep peacefully!",
+    "goodnight": "A warm, gentle printable storybook designed to help toddlers settle down, follow bedtime routines, and fall asleep peacefully!",
     "bath": "A splashy, fun printable storybook helping toddlers enjoy bath time routines and water play safety!",
     "brush": "A happy, printable storybook designed to encourage toddlers to brush their teeth daily and enjoy healthy smiles!"
 }
