@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pop the Panda Goes to Potty - A Children's Picture Book</title>
+    <style>
+        @font-face {
+            font-family: 'Bubblegum Sans';
+            src: url('./fonts/BubblegumSans-Regular.ttf') format('truetype');
+        }
+        
+        @page {
+            size: letter landscape;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Bubblegum Sans', sans-serif;
+            background-color: #ffffff;
+            color: #2d3748;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Page wrapper */
+        .page {
+            width: 100vw;
+            height: 100vh;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background-color: #fff7ed; /* Soft peach/orange background */
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); /* Peach gradient */
+            padding: 60px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #c2410c;
+            margin: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ea580c;
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        .cover-image-container {
+            width: 500px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-image-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cover-footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #7c2d12;
+            background-color: #ffedd5;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            border: 1px solid #fed7aa;
+        }
+
+        /* Standard Page layout */
+        .image-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 70vh;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+        }
+
+        .parent-script {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ea580c;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Pop the Panda Goes to Potty</h1>
+        <p class="cover-subtitle">A Story of Learning and Feeling Clean!</p>
+        <div class="cover-image-container">
+            <img src="potty_4.png" alt="Pop the Panda Goes to Potty Cover">
+        </div>
+        <div class="cover-footer">Climbing the Ladder, Doing Pooping, and Getting Clean!</div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_1.png" alt="Rumble in the Tummy!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop the little panda has a rumble in his tummy. Rumble, rumble!"</p>
+        </div>
+        <div class="page-number">Page 1</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_2.png" alt="Pop Tells Mommy">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop tells his mommy, 'Mommy, I want to go to potty!'"</p>
+        </div>
+        <div class="page-number">Page 2</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_3.png" alt="Walking to the Potty">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop walks to the bathroom. Let's go, Pop!"</p>
+        </div>
+        <div class="page-number">Page 3</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_4.png" alt="The Special Bear Seat!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Look! Pop's special bear potty seat! It has a red bear face, yellow side poles, and red steps."</p>
+        </div>
+        <div class="page-number">Page 4</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_5.png" alt="Up the Ladder!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Step, step, step! Pop climbs up the yellow and red ladder."</p>
+        </div>
+        <div class="page-number">Page 5</div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_6.png" alt="Pop Sits Down">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop sits on the soft white seat. He does his pooping. Plop, plop!"</p>
+        </div>
+        <div class="page-number">Page 6</div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_7.png" alt="Washing Clean!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Mommy washes Pop clean in the wash basin. Splish, splash! All clean!"</p>
+        </div>
+        <div class="page-number">Page 7</div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="page">
+        <div class="image-container">
+            <img src="potty_8.png" alt="Clean and Fresh!">
+        </div>
+        <div class="text-container">
+            <p class="parent-script">"Pop is all clean and fresh! Hooray for the potty! Clap, clap!"</p>
+        </div>
+        <div class="page-number">Page 8</div>
+    </div>
+
+</body>
+</html>
