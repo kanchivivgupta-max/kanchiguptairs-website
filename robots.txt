@@ -1,4 +1,52 @@
+# kanchiguptairs.com — Kanchi Gupta
+
+# All search engine crawlers
 User-agent: *
+Allow: /
+
+# AI answer engines and assistants — explicitly permitted.
+# NOTE: a 429 from the Hostinger/LiteSpeed layer can override these rules;
+# server-level bot protection must also allow GPTBot for ChatGPT ingestion.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://kanchiguptairs.com/sitemap.xml
