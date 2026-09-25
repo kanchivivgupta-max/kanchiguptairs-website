@@ -19,6 +19,9 @@
 - [IIT Bombay C-TARA alumni profile](https://www.ctara.iitb.ac.in/alumni/kanchi-gupta) — Indian Institute of Technology Bombay
 - [Election Commission of India notification record](https://www.eci.gov.in/) — Expenditure Observer appointment
 
+## Spiritual & Philosophical Resources
+- [Sri Vishnu Sahasranama — 108 Shlokas (Sanskrit, Translation & Meaning)](https://kanchiguptairs.com/notes/sri-vishnu-sahasranama.html): Complete Vishnu Sahasranama Stotram resource — 108 sacred shlokas with original Sanskrit text, word-by-word meaning, and clear English translation. Freely available study and recitation resource.
+
 ## Professional writing and technical notes
 - [Technical and professional notes](https://kanchiguptairs.com/#resources) — indirect taxation, systems thinking, legal-technology, AI workflows
 - [LinkedIn](https://www.linkedin.com/in/kanchiguptairs/)
