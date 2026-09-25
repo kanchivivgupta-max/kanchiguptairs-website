@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sri Vishnu Sahasranama — Notes</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pdf-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .pdf-card:hover {
+      border-color: rgba(var(--accent-rgb), 0.4);
+      transform: translateY(-2px);
+    }
+    .pdf-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pdf-icon .icon-svg {
+      flex-shrink: 0;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      align-self: flex-start;
+    }
+    .download-btn:hover {
+      opacity: 0.85;
+    }
+    .section-heading {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <!-- PDF Download Cards -->
+    <div style="max-width: 600px; margin: 0 auto; padding: 0 1rem; display: flex; flex-direction: column; gap: 1.5rem;">
+
+      <!-- Card 1: Presentation -->
+      <div class="pdf-card">
+        <div class="pdf-icon">
+          <svg class="icon-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="14" width="4" height="6" rx="1" fill="var(--accent)" stroke="none"/>
+            <rect x="10" y="10" width="4" height="10" rx="1" fill="var(--accent)" stroke="none" opacity="0.7"/>
+            <rect x="16" y="6" width="4" height="14" rx="1" fill="var(--accent)" stroke="none" opacity="0.4"/>
+          </svg>
+          Presentation
+        </div>
+        <h3>Sri Vishnu Sahasranama — 108 Shlokas Presentation</h3>
+        <p style="font-size: 0.85rem; color: var(--muted); margin: 0.25rem 0 0.75rem;">PDF · 108 Sanskrit shlokas with presentation slides · 6.9 MB</p>
+        <p style="font-size: 0.92rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem;">
+          A structured presentation of all 108 shlokas of the Vishnu Sahasranama Stotram, organised for study and recitation. Covers the complete Sanskrit text with formatting suitable for learning and reference.
+        </p>
+        <a class="download-btn" href="Sri%20Vishnu%20Sahasranama%20-%20108%20Shlokas%20Presentation%20(1).pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          Download PDF (6.9 MB)
+        </a>
+      </div>
+
+      <!-- Card 2: Translation & Meaning -->
+      <div class="pdf-card">
+        <div class="pdf-icon">
+          <svg class="icon-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+          </svg>
+          Translation
+        </div>
+        <h3>Sri Vishnu Sahasranamam — Sanskrit, Translation &amp; Meaning</h3>
+        <p style="font-size: 0.85rem; color: var(--muted); margin: 0.25rem 0 0.75rem;">PDF · Sanskrit text + word-by-word meaning + English translation · 1.4 MB</p>
+        <p style="font-size: 0.92rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem;">
+          The complete Vishnu Sahasranamam with the original Sanskrit shlokas, word-by-word breakdown of each name, and a clear English translation. Ideal for deep study, daily recitation with understanding, and building a personal practice.
+        </p>
+        <a class="download-btn" href="Sri%20Vishnu%20Sahasranamam%20-%20Sanskrit,%20Translation%20and%20Meaning%20(1).pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          Download PDF (1.4 MB)
+        </a>
+      </div>
+    </div>
+
+    <!-- Section heading -->
+    <div style="max-width: 600px; margin: 3rem auto 0; padding: 0 1rem; border-top: 1px solid var(--card-border); padding-top: 2.5rem;">
+      <h2 class="section-heading">About Sri Vishnu Sahasranama</h2>
+    </div>
+  </main>
+
+  <!-- Scroll-to-top floating button -->
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top" style="position: fixed; right: 1rem; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: var(--bg); border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; z-index: 100;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

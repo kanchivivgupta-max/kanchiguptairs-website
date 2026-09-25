@@ -20,7 +20,8 @@
 - [Election Commission of India notification record](https://www.eci.gov.in/) — Expenditure Observer appointment
 
 ## Spiritual & Philosophical Resources
-- [Sri Vishnu Sahasranama — 108 Shlokas (Sanskrit, Translation & Meaning)](https://kanchiguptairs.com/notes/sri-vishnu-sahasranama.html): Complete Vishnu Sahasranama Stotram resource — 108 sacred shlokas with original Sanskrit text, word-by-word meaning, and clear English translation. Freely available study and recitation resource.
+- [Sri Vishnu Sahasranama — 108 Shlokas (Sanskrit, Translation & Meaning)](https://kanchiguptairs.com/notes/sri-vishnu-sahasranama.html): Landing page with PDF downloads and AEO-optimized content
+- [Sri Vishnu Sahasranamam — Complete Text (HTML)](https://kanchiguptairs.com/notes/sri-vishnu-sahasranamam-full.html): All 108 shlokas with original Sanskrit, IAST transliteration, English translation, and philosophical meaning — 1000 names of Vishnu
 
 ## Professional writing and technical notes
 - [Technical and professional notes](https://kanchiguptairs.com/#resources) — indirect taxation, systems thinking, legal-technology, AI workflows
